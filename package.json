@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/joshheath/MA_final_project/issues"
   },
-  "homepage": "https://github.com/joshheath/MA_final_project#readme"
+  "homepage": "https://github.com/joshheath/MA_final_project#readme",
+  "dependencies": {
+    "nodemon": "^1.18.3",
+    "watson-developer-cloud": "^3.7.0"
+  }
 }
