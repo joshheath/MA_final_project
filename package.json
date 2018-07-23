@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/joshheath/MA_final_project#readme",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "nodemon": "^1.18.3",
+    "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.7.0"
   }
 }
