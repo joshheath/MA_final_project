@@ -20,18 +20,25 @@ var params = {
 
 var my_arr = []
 
+var trendParams = {
+  count: 10
+}
+
 // Get top 50 trends in London
-client.get('https://api.twitter.com/1.1/trends/place.json?id=44418', function(err, data, response) {
+client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, trendParams, function(err, data, response) {
   if(!err) {
-    
+    var top10Trends = []
     for(let i = 0; i < data[0].trends.length; i++) {
-      console.log(data[0].trends[i].name)
+      top10Trends.push(data[0].trends[i].name)
     }
-    
+    var joint = top10Trends.join(' ')
+    console.log(joint.length)
+    client.post('statuses/update', {status: 'hello'})
   } else {
     console.log(err);
   }
 })
+
 
 client.get('search/tweets', params, function(err, data, response) {
   if(!err){
