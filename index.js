@@ -1,5 +1,7 @@
 const Twitter = require('twitter');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+const NaturalLanguageUnderstanding = require('watson-developer-cloud/natural-language-understanding/v1');
+
 require('dotenv').config()
 
 var client = new Twitter({
@@ -15,8 +17,23 @@ var params = {
   result_type: 'recent',
   lang: 'en'
 }
+
+var my_arr = []
+
+// Get top 50 trends in London
+client.get('https://api.twitter.com/1.1/trends/place.json?id=44418', function(err, data, response) {
+  if(!err) {
+    
+    for(let i = 0; i < data[0].trends.length; i++) {
+      console.log(data[0].trends[i].name)
+    }
+    
+  } else {
+    console.log(err);
+  }
+})
+
 client.get('search/tweets', params, function(err, data, response) {
-  var my_arr = []
   if(!err){
     for(let i = 0; i < data.statuses.length; i++) {
       my_arr.push(data.statuses[i].text)
@@ -24,26 +41,30 @@ client.get('search/tweets', params, function(err, data, response) {
   } else {
     console.log(err);
   }
-  console.log(my_arr)
-})
 
-const toneAnalyzer = new ToneAnalyzerV3({
-  version: '2017-09-21',
-  username: process.env.TONEANALYZER_USERNAME,
-  password: process.env.TONEANALYZER_PASSWORD
-});
 
-const text = 'To Iranian President Rouhani: NEVER, EVER THREATEN THE UNITED STATES AGAIN OR YOU WILL SUFFER CONSEQUENCES THE LIKES OF WHICH FEW THROUGHOUT HISTORY HAVE EVER SUFFERED BEFORE. WE ARE NO LONGER A COUNTRY THAT WILL STAND FOR YOUR DEMENTED WORDS OF VIOLENCE & DEATH. BE CAUTIOUS!'
-
-const toneParams = {
-  'tone_input': { 'text': text },
-  'content_type': 'application/json'
-};
-
-toneAnalyzer.tone(toneParams, function (error, analysis) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(JSON.stringify(analysis, null, 2));
+  var joined_arr = my_arr.join(' ')
+  
+  const NLAAnalyser = new NaturalLanguageUnderstanding({
+    username: process.env.NLA_USERNAME,
+    password: process.env.NLA_PASSWORD,
+    version: '2018-03-16'
+  })
+  
+  var parameters = {
+    'text': joined_arr,
+    'features': {
+      'concepts': {},
+      'emotion': {},
+      'sentiment': {},
+    }
   }
-}); 0;
+  
+  NLAAnalyser.analyze(parameters, function(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(JSON.stringify(response, null, 2));
+    }
+  })
+})
