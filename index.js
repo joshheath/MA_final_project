@@ -18,60 +18,80 @@ var params = {
   lang: 'en'
 }
 
-var my_arr = []
-
-var trendParams = {
-  count: 10
+// Get top 50 trends in London
+function getTrends() {
+  return new Promise(resolve => {
+    client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, function(err, data, response) {
+      if(!err) {
+        var top10Trends = []
+        for(let i = 0; i < 10; i++) {
+          top10Trends.push(data[0].trends[i].name)
+        }
+        // var joint = top10Trends.join(' ')
+        // client.post('statuses/update', {status: `${joint}`}, function(error, tweet, response) {
+        //   if(error) console.log(error)
+        // })
+        resolve(top10Trends);
+      } else {
+        console.log(err);
+      }
+    })
+  });
 }
 
-// Get top 50 trends in London
-client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, trendParams, function(err, data, response) {
-  if(!err) {
-    var top10Trends = []
-    for(let i = 0; i < data[0].trends.length; i++) {
-      top10Trends.push(data[0].trends[i].name)
+async function getStreams() {
+  const top10Trends = await getTrends();
+  top10Trends.forEach(function(trend) {
+    const params = {
+      q: `${trend}`,
+      count: 10,
+      result_type: 'recent',
+      lang: 'en'
     }
-    var joint = top10Trends.join(' ')
-    console.log(joint.length)
-    client.post('statuses/update', {status: 'hello'})
-  } else {
-    console.log(err);
-  }
-})
 
+    client.get('search/tweets', params, function(err, data, response) {
+      const my_arr = []
+      if(!err){
+        for(let i = 0; i < data.statuses.length; i++) {
+          my_arr.push(data.statuses[i].text)
+        }
+      console.log(my_arr)
+      } else {
+        console.log(err);
+      }
+    })
 
-client.get('search/tweets', params, function(err, data, response) {
-  if(!err){
-    for(let i = 0; i < data.statuses.length; i++) {
-      my_arr.push(data.statuses[i].text)
-    }
-  } else {
-    console.log(err);
-  }
-
-
-  var joined_arr = my_arr.join(' ')
-  
-  const NLAAnalyser = new NaturalLanguageUnderstanding({
-    username: process.env.NLA_USERNAME,
-    password: process.env.NLA_PASSWORD,
-    version: '2018-03-16'
   })
-  
-  var parameters = {
-    'text': joined_arr,
-    'features': {
-      'concepts': {},
-      'emotion': {},
-      'sentiment': {},
-    }
-  }
-  
-  NLAAnalyser.analyze(parameters, function(error, response) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(JSON.stringify(response, null, 2));
-    }
-  })
-})
+}
+
+getStreams()
+
+
+
+//
+//
+//   var joined_arr = my_arr.join(' ')
+//
+//   const NLAAnalyser = new NaturalLanguageUnderstanding({
+//     username: process.env.NLA_USERNAME,
+//     password: process.env.NLA_PASSWORD,
+//     version: '2018-03-16'
+//   })
+//
+//   var parameters = {
+//     'text': joined_arr,
+//     'features': {
+//       'concepts': {},
+//       'emotion': {},
+//       'sentiment': {},
+//     }
+//   }
+//
+//   NLAAnalyser.analyze(parameters, function(error, response) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log(JSON.stringify(response, null, 2));
+//     }
+//   })
+// })
