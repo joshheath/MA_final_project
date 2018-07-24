@@ -2,7 +2,7 @@
 
 MVP user stories:
 > As a twitter user,  
-> so I can read reports on current debates, 
+> so I can read reports on current debates,  
 > I want to follow the twitter bot.  
 
 > As a twitter user,  
