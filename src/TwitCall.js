@@ -29,14 +29,14 @@ TwitCall.prototype.getTrends = function () {
 };
 
 TwitCall.prototype.getTweets = function(trend) {
-  return new Promise(function(resolve) {
+  return new Promise(resolve => {
     const params = {
       q: `${trend}`,
       count: 10,
       lang: 'en'
     }
     const trendHash = {trend: "", tweets: []}
-    client.get('search/tweets', params, function(err, data, response) {
+    this._client.get('search/tweets', params, function(err, data, response) {
       trendHash.trend = trend;
       if (!err) {
         data.statuses.forEach(function(tweet) {
@@ -45,6 +45,7 @@ TwitCall.prototype.getTweets = function(trend) {
       } else {
         console.log(err)
       }
+      console.log(trendHash)
       resolve(trendHash);
     })
   })
@@ -53,6 +54,6 @@ TwitCall.prototype.getTweets = function(trend) {
 
 var twitcall = new TwitCall();
 
-twitcall.getTrends();
+twitcall.getTweets('Flipper');
 
 module.exports = TwitCall;

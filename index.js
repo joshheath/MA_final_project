@@ -74,54 +74,54 @@ var getTweets = function(trend) {
 
 
 
-// function getStreams(trends) {
-//   return new Promise(resolve => {
-//     trends.forEach(function(trend) {
-//       const params = {
-//         q: `${trend}`,
-//         count: 10,
-//         result_type: 'recent',
-//         lang: 'en'
-//       }
-//
-//       client.get('search/tweets', params, function(err, data, response) {
-//         const streamsArray = []
-//         if(!err){
-//           console.log(data)
-//           for(let i = 0; i < data.statuses.length; i++) {
-//             streamsArray.push(data.statuses[i].text)
-//           }
-//         streamsArray.forEach(function(stream) {
-//           var analytics = []
-//           var parameters = {
-//             'text': stream,
-//             'features': {
-//               'concepts': {},
-//               'emotion': {},
-//               'sentiment': {},
-//             }
-//           }
-          // const NLAAnalyser = new NaturalLanguageUnderstanding({
-          //   username: process.env.NLA_USERNAME,
-          //   password: process.env.NLA_PASSWORD,
-          //   version: '2018-03-16'
-          // })
-//           // NLAAnalyser.analyze(parameters, function(error, response) {
-//           //   if (error) {
-//           //     console.log(error);
-//           //   } else {
-//           //     analytics.push(JSON.stringify(response, null, 2));
-//           //   }
-//           //   resolve(analytics);
-//           // })
-//         })
-//         } else {
-//           console.log(err);
-//         }
-//       })
-//     })
-//   })
-// }
+function getStreams(trends) {
+  return new Promise(resolve => {
+    trends.forEach(function(trend) {
+      const params = {
+        q: `${trend}`,
+        count: 10,
+        result_type: 'recent',
+        lang: 'en'
+      }
+
+      client.get('search/tweets', params, function(err, data, response) {
+        const streamsArray = []
+        if(!err){
+          console.log(data)
+          for(let i = 0; i < data.statuses.length; i++) {
+            streamsArray.push(data.statuses[i].text)
+          }
+        streamsArray.forEach(function(stream) {
+          var analytics = []
+          var parameters = {
+            'text': stream,
+            'features': {
+              'concepts': {},
+              'emotion': {},
+              'sentiment': {},
+            }
+          }
+          const NLAAnalyser = new NaturalLanguageUnderstanding({
+            username: process.env.NLA_USERNAME,
+            password: process.env.NLA_PASSWORD,
+            version: '2018-03-16'
+          })
+          NLAAnalyser.analyze(parameters, function(error, response) {
+            if (error) {
+              console.log(error);
+            } else {
+              analytics.push(JSON.stringify(response, null, 2));
+            }
+            resolve(analytics);
+          })
+        })
+        } else {
+          console.log(err);
+        }
+      })
+    })
+  })
+}
 
 
 async function asyncCall() {
