@@ -1,6 +1,6 @@
 # MA_final_project
 
-MVP user stories:
+## MVP user stories:
 > As a twitter user,  
 > so I can read reports on current debates,  
 > I want to follow the twitter bot.  
@@ -12,3 +12,15 @@ MVP user stories:
 > As a twitter user,  
 > so I know what the top debates are,  
 > I want the twitter bot to inform me what they are.
+
+## First retro
+
+![First retro](/assets/retro1.jpg "retro")
+
+Things we agreed:
+
+- Establish more formal processes including:
+- Daily "retro" (i.e. short review of today's code)
+- Code reviews
+- Removing ability to push directly to master branch
+- Testing (front end & API)
