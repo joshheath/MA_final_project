@@ -11,27 +11,23 @@ var client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-var params = {
-  q: '#nodejs',
-  count: 10,
-  result_type: 'recent',
-  lang: 'en'
+class ApiClient {
+  get(url, callback) {
+    return client(url, callback);
+  }
 }
+
 
 // Get top 50 trends in London
 function getTrends() {
   return new Promise(resolve => {
-    client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, function(err, data, response) {
+    ApiClient.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, function(err, data, response) {
       if(!err) {
         var top10Trends = []
         for(let i = 0; i < 10; i++) {
           top10Trends.push(data[0].trends[i].name)
         }
-        // var joint = top10Trends.join(' ')
-        // client.post('statuses/update', {status: `${joint}`}, function(error, tweet, response) {
-        //   if(error) console.log(error)
-        // })
-
+        console.log(top10Trends)
         resolve(top10Trends);
       } else {
         console.log(err);
@@ -40,68 +36,98 @@ function getTrends() {
   })
 }
 
+
+
 function getStreams(trends) {
   return new Promise(resolve => {
+    const arrayofStreams = []
     trends.forEach(function(trend) {
-      const params = {
-        q: `${trend}`,
-        count: 10,
-        result_type: 'recent',
-        lang: 'en'
-      }
-
-      client.get('search/tweets', params, function(err, data, response) {
-        const streamsArray = []
-        if(!err){
-          for(let i = 0; i < data.statuses.length; i++) {
-            streamsArray.push(data.statuses[i].text)
-          }
-        resolve(streamsArray);
-        } else {
-          console.log(err);
-        }
+      getTweets(trend).then(function(fulfilled) {
+        arrayofStreams.push(fulfilled)
       })
+    })
+    resolve(arrayofStreams)
+  })
+}
+
+var getTweets = function(trend) {
+  return new Promise(function(resolve) {
+    const params = {
+      q: `${trend}`,
+      count: 10,
+      lang: 'en'
+    }
+    const trendHash = {trend: "", tweets: []}
+    client.get('search/tweets', params, function(err, data, response) {
+      trendHash.trend = trend;
+      if (!err) {
+        data.statuses.forEach(function(tweet) {
+          trendHash.tweets.push(tweet.text)
+        })
+      } else {
+        console.log(err)
+      }
+      resolve(trendHash);
     })
   })
 }
 
-function tweetReports(streamsArray) {
-  return new Promise(resolve => {
-    const NLAAnalyser = new NaturalLanguageUnderstanding({
-      username: process.env.NLA_USERNAME,
-      password: process.env.NLA_PASSWORD,
-      version: '2018-03-16'
-    })
-    console.log(streamsArray)
-    
-    streamsArray.forEach(function(stream) {
-      var parameters = {
-        'text': stream,
-        'features': {
-          'concepts': {},
-          'emotion': {},
-          'sentiment': {},
-        }
-      }
-      NLAAnalyser.analyze(parameters, function(error, response) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('peep')
-          // console.log(JSON.stringify(response, null, 2));
-        }
-      })
-    })
-  })
 
-}
+
+// function getStreams(trends) {
+//   return new Promise(resolve => {
+//     trends.forEach(function(trend) {
+//       const params = {
+//         q: `${trend}`,
+//         count: 10,
+//         result_type: 'recent',
+//         lang: 'en'
+//       }
+//
+//       client.get('search/tweets', params, function(err, data, response) {
+//         const streamsArray = []
+//         if(!err){
+//           console.log(data)
+//           for(let i = 0; i < data.statuses.length; i++) {
+//             streamsArray.push(data.statuses[i].text)
+//           }
+//         streamsArray.forEach(function(stream) {
+//           var analytics = []
+//           var parameters = {
+//             'text': stream,
+//             'features': {
+//               'concepts': {},
+//               'emotion': {},
+//               'sentiment': {},
+//             }
+//           }
+          // const NLAAnalyser = new NaturalLanguageUnderstanding({
+          //   username: process.env.NLA_USERNAME,
+          //   password: process.env.NLA_PASSWORD,
+          //   version: '2018-03-16'
+          // })
+//           // NLAAnalyser.analyze(parameters, function(error, response) {
+//           //   if (error) {
+//           //     console.log(error);
+//           //   } else {
+//           //     analytics.push(JSON.stringify(response, null, 2));
+//           //   }
+//           //   resolve(analytics);
+//           // })
+//         })
+//         } else {
+//           console.log(err);
+//         }
+//       })
+//     })
+//   })
+// }
 
 
 async function asyncCall() {
   var trends = await getTrends();
-  var streams = await getStreams(trends);
-  var reports = await tweetReports(streams);
-  console.log(reports)
+  var tweets = await getStreams(trends);
+  // console.log(analytics)
 }
 
 asyncCall();
