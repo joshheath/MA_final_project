@@ -1,3 +1,11 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
 const Twitter = require('twitter');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const NaturalLanguageUnderstanding = require('watson-developer-cloud/natural-language-understanding/v1');
@@ -78,7 +86,7 @@ function tweetReports(streamsArray) {
     })
 }
 
-// 
+//
 // function asyncCall() {
 //   var trends = getTrends();
 //   var streams = getStreams(trends);
