@@ -54,3 +54,5 @@ TwitCall.prototype.getTweets = function(trend) {
 var twitcall = new TwitCall();
 
 twitcall.getTrends();
+
+module.exports = TwitCall;

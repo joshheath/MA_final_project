@@ -1,6 +1,5 @@
-describe("Twitter", function() {
+const TwitCall = require('../src/TwitCall')
 
-  var twitcall;
   var mockTwitter;
   var promisedData = [{trends: [{name: "#wednesdaywisdom"}]}];
 
@@ -18,6 +17,4 @@ describe("Twitter", function() {
       twitcall.getTrends();
       expect(mockTwitter.get).toHaveBeenCalled();
     });
-  });
-
 });
