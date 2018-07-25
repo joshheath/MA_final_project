@@ -11,37 +11,24 @@ var client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-var params = {
-  q: '#nodejs',
-  count: 10,
-  result_type: 'recent',
-  lang: 'en'
-}
-
 // Get top 50 trends in London
 function getTrends() {
-  return new Promise(resolve => {
-    client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, function(err, data, response) {
+  
+    client.get(`https://api.twitter.com/1.1/trends/place.json?id=1&lang=en`, function(err, data, response) {
       if(!err) {
         var top10Trends = []
         for(let i = 0; i < 10; i++) {
-          top10Trends.push(data[0].trends[i].name)
+          top10Trends.push(data[0].trends[i])
         }
-        // var joint = top10Trends.join(' ')
-        // client.post('statuses/update', {status: `${joint}`}, function(error, tweet, response) {
-        //   if(error) console.log(error)
-        // })
-
-        resolve(top10Trends);
+        return top10Trends;
       } else {
         console.log(err);
       }
     })
-  })
+
 }
 
 function getStreams(trends) {
-  return new Promise(resolve => {
     trends.forEach(function(trend) {
       const params = {
         q: `${trend}`,
@@ -56,23 +43,21 @@ function getStreams(trends) {
           for(let i = 0; i < data.statuses.length; i++) {
             streamsArray.push(data.statuses[i].text)
           }
-        resolve(streamsArray);
+        return streamsArray;
         } else {
           console.log(err);
         }
       })
     })
-  })
+  
 }
 
 function tweetReports(streamsArray) {
-  return new Promise(resolve => {
     const NLAAnalyser = new NaturalLanguageUnderstanding({
       username: process.env.NLA_USERNAME,
       password: process.env.NLA_PASSWORD,
       version: '2018-03-16'
     })
-    console.log(streamsArray)
     
     streamsArray.forEach(function(stream) {
       var parameters = {
@@ -87,21 +72,20 @@ function tweetReports(streamsArray) {
         if (error) {
           console.log(error);
         } else {
-          console.log('peep')
-          // console.log(JSON.stringify(response, null, 2));
+          return JSON.stringify(response, null, 2);
         }
       })
     })
-  })
-
 }
 
 
-async function asyncCall() {
-  var trends = await getTrends();
-  var streams = await getStreams(trends);
-  var reports = await tweetReports(streams);
+function asyncCall() {
+  var trends = getTrends();
+  var streams = getStreams(trends);
+  var reports = tweetReports(streams);
   console.log(reports)
 }
 
 asyncCall();
+
+// The issue is that the streamsArray 
