@@ -13,19 +13,23 @@ function TwitCall(client = new Twitter({
 // This function gets the top 10 trends from Twitter.
 // Pass in geolocator number.
 TwitCall.prototype.getTrends = function(location) {
-  this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}`, function(err, data, response) {
-    if(!err) {
-      console.log(data[0].trends[0].name)
-      var top10Trends = []
-      for(let i = 0; i < 10; i++) {
-        top10Trends.push(data[0].trends[i].name)
-      }
-      console.log(top10Trends)
-      return(top10Trends);
-    } else {
-      console.log(err);
-    }
+  return new Promise((resolve, reject) => {
+    this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}`, function(err, data, response) {
+     if(!err) {
+       // console.log(data[0].trends[0].name)
+       var top10Trends = []
+       for(let i = 0; i < 10; i++) {
+         top10Trends.push(data[0].trends[i].name)
+       }
+       console.log(top10Trends)
+       resolve(top10Trends);
+     } else {
+       console.log(err);
+       reject(err);
+     }
+   })
   })
+
 };
 
 // This function gets the tweets associated with a given trend.
@@ -60,5 +64,9 @@ TwitCall.prototype.updateStatus = function (status) {
     console.log(response);  // Raw response object.
   });
 };
+
+var twitcall = new TwitCall();
+
+// twitcall.getTrends(1);
 
 module.exports = TwitCall;
