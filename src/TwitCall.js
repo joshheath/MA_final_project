@@ -36,23 +36,27 @@ TwitCall.prototype.getTrends = function(location) {
 // Pass in the trend.
 // It returns a hash with 'trend' and 'tweets' as keys.
 TwitCall.prototype.getTweets = function(trend) {
-  const params = {
-    q: `${trend}`,
-    count: 10,
-    lang: 'en'
-  }
-  const trendHash = {trend: "", tweets: []}
-  this._client.get('search/tweets', params, function(err, data, response) {
-    trendHash.trend = trend;
-    if (!err) {
-      data.statuses.forEach(function(tweet) {
-        trendHash.tweets.push(tweet.text)
-      })
-    } else {
-      console.log(err)
+  return new Promise((resolve, reject) => {
+
+    const params = {
+      q: `${trend}`,
+      count: 10,
+      lang: 'en'
     }
-    console.log(trendHash)
-    return(trendHash);
+    const trendHash = {trend: "", tweets: []}
+    this._client.get('search/tweets', params, function(err, data, response) {
+      trendHash.trend = trend;
+      if (!err) {
+        data.statuses.forEach(function(tweet) {
+          trendHash.tweets.push(tweet.text)
+        })
+      } else {
+        console.log(err)
+        reject(err)
+      }
+      console.log(trendHash)
+      resolve(trendHash);
+    })
   })
 }
 

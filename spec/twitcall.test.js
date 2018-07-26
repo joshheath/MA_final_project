@@ -30,17 +30,25 @@ const TwitCall = require('../src/TwitCall')
       expect(mockTwitter.get).toHaveBeenCalled();
     });
 
-    it('returns tweets in an array', function(albatross){
+    it('returns tweets in an array', function(done){
       twitcall.getTrends().then(function(pData) {
         expect(pData[0]).toEqual("#wednesdaywisdom")
       });
+      done();
     });
 
   describe("#getTweets", function() {
-    it('gets an array of tweets', function() {
+    it('it calls the twitter API', function(done) {
+      twitcall.getTweets().then(function(pData){
+        expect(pData[0]).toEqual("#wednesdaywisdom")
+      });
+      done();
+    });
+
+    it('calls the Twitter API', function() {
       spyOn(mockTwitter, 'get')
-      twitcall.getTrends();
+      twitcall.getTweets();
       expect(mockTwitter.get).toHaveBeenCalled();
-    })
+    });  
   })
 });
