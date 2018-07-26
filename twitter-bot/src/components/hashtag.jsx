@@ -1,9 +1,16 @@
 import React from 'react';
+import { Component } from 'react'
 
-export default class Hashtag extends React.Component {
-    render() {
-        return (
-            <div>Hello world</div>
-        );
+class Hashtag extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderHashtags = (hashtag, index) => {
+          return <li key={index}>{hashtag}</li>
+        }
     }
-}
+    render() {
+      return <ul>{this.props.hashtags.map(this.renderHashtags)}</ul>
+    }
+  }
+
+  export default Hashtag

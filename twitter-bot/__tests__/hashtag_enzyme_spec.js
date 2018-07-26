@@ -7,7 +7,18 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('Hashtag', () => {
   it('Hashtag renders hello world', () => {
-    const hashtag = Enzyme.shallow(<Hashtag />);
-    expect(hashtag.find('div').text()).toEqual('Hello world');
+    const hashtags = [ '#FelizJueves',
+    '#OhMy2ndWin',
+    '#ThursdayThoughts',
+    '#DíaDeLosAbuelos',
+    '#ElectionResults2018',
+    'Ceuta',
+    'Enzo Roco',
+    'Vietto',
+    'Mick Jagger',
+    'Adil Rashid' ];
+
+    const list = Enzyme.shallow(<Hashtag data={hashtags}/>);
+    console.log(list.props());
   });
 });
