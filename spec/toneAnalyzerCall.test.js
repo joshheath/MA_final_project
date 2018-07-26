@@ -20,4 +20,10 @@ const ToneAnalyzerCall = require('../src/ToneAnalyzerCall')
       });
       done();
     })
+
+    it('calls the Twitter API', function() {
+      spyOn(mockToneAnalyzer, 'tone')
+      toneanalyzercall.analyzeSentiment();
+      expect(mockToneAnalyzer.tone).toHaveBeenCalled();
+    });
   });
