@@ -1,11 +1,23 @@
-// const ToneAnalyzerCall = require('../src/ToneAnalyzerCall')
-//
-//
-//   describe("#analyzeSentiment", function(){
-//     it('assesses the sentiment of tweets', function(){
-//
-//
-//
-//     })
-//
-//   });
+const ToneAnalyzerCall = require('../src/ToneAnalyzerCall')
+
+  var mockToneAnalyzer;
+  var toneanalyzercall;
+
+  var promisedAnalysis = {analysis: {document_tone: {tones: ["negative"
+  ]}}};
+
+  describe("#analyzeSentiment", function(){
+    it('assesses the sentiment of tweets', function(done){
+      mockToneAnalyzer = {
+        tone: function(toneParams, callback){
+          callback(null, "negative")
+        },
+      };
+      toneanalyzercall = new ToneAnalyzerCall(mockToneAnalyzer);
+
+      toneanalyzercall.analyzeSentiment().then(function(sentiment){
+        expect(sentiment).toEqual({tones: ["negative"]})
+      });
+      done();
+    })
+  });
