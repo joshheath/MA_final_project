@@ -62,10 +62,13 @@ TwitCall.prototype.getTweets = function(trend) {
 
 // This function just posts to our bot. Pass in the tweet as argument.
 TwitCall.prototype.updateStatus = function (status) {
-  this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
-    if(error) throw error;
-    console.log(tweet);  // Tweet body.
-    console.log(response);  // Raw response object.
+  return new Promise((resolve, reject) => {
+    this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
+      if(error) reject(error);
+      console.log(tweet);
+      resolve(tweet)  // Tweet body.
+      console.log(response);  // Raw response object.
+    });
   });
 };
 

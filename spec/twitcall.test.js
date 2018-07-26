@@ -18,6 +18,9 @@ const TwitCall = require('../src/TwitCall')
     mockTwitter = {
       get: function(url, callback) {
         callback(null, promisedData, null)
+      },
+      post: function(status, tweet, callback) {
+        callback(null, 'tweet', null)
       }
     }
     twitcall = new TwitCall(mockTwitter);
@@ -49,6 +52,16 @@ const TwitCall = require('../src/TwitCall')
       spyOn(mockTwitter, 'get')
       twitcall.getTweets();
       expect(mockTwitter.get).toHaveBeenCalled();
-    });  
+    });
   })
+
+  describe("#updateStatus", function() {
+    it('updates twitter status', function(done) {
+      twitcall.updateStatus().then(function(tweet) {
+        expect(tweet).toEqual("tweet")
+      });
+      done();
+    })
+  })  
+
 });
