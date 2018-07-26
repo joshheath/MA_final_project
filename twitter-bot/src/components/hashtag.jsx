@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Welcome extends React.Component {
+export default class Hashtag extends React.Component {
     render() {
         return (
             <div>Hello world</div>
