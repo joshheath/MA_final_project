@@ -9,7 +9,7 @@ function ToneAnalyzerCall(toneAnalyzer = new ToneAnalyzerV3({
   this._toneAnalyzer = toneAnalyzer;
 }
 
-ToneAnalyzerCall.prototype.analyzeSentiment = function () {
+ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
   const toneParams = {
     'tone_input': { 'text': text },
     'content_type': 'application/json'
@@ -19,8 +19,15 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function () {
     if (error) {
       console.log(error);
     } else {
-      console.log(JSON.stringify(analysis, null, 2));
+      const tones = {tones: []}
+      analysis.document_tone.tones.forEach(tone => {tones.tones.push(tone.tone_name)})
+      console.log(tones);
+      return tones;
     }
   }); 0;
 
 };
+
+const analyse = new ToneAnalyzerCall();
+
+analyse.analyzeSentiment('A government led by Jeremy Corbyn would pose an existential threat to Jewish life in the UK, a joint editorial published by the country’s three most prominent Jewish newspapers has claimed.')

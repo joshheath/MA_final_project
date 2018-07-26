@@ -24,7 +24,20 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
     if (error) {
       console.log(error);
     } else {
-      console.log(JSON.stringify(response, null, 2));
+      const sentiment = response.sentiment.document.label;
+      const emotions = response.emotion.document.emotion;
+      const concepts = []
+      response.concepts.forEach(concept => { concepts.push(concept.text) });
+      const report = {};
+      report['sentiment'] = sentiment;
+      report['emotions'] = emotions;
+      report['concepts'] = concepts;
+      console.log(report);
+      return report;
     }
   });
 };
+
+const nlc = new NaturalLanguageCall();
+
+nlc.analyzeLanguage('A total of 23 people died in or after detention in 2017-18, according to official figures released by the police watchdog, up from 14 people the previous year.')
