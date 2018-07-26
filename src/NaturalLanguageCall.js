@@ -9,7 +9,7 @@ function NaturalLanguageCall(analyzer = new NaturalLanguageUnderstanding({
   this._analyzer = analyzer;
 }
 
-
+// This function takes a tweet/stream as argument and returns a hash with keys for dominant 'sentiment', 'emotions' and 'concepts'.
 NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
   var parameters = {
     'text': tweets,
@@ -38,6 +38,4 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
   });
 };
 
-const nlc = new NaturalLanguageCall();
-
-nlc.analyzeLanguage('A total of 23 people died in or after detention in 2017-18, according to official figures released by the police watchdog, up from 14 people the previous year.')
+module.exports = NaturalLanguageCall;

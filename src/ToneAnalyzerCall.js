@@ -9,6 +9,7 @@ function ToneAnalyzerCall(toneAnalyzer = new ToneAnalyzerV3({
   this._toneAnalyzer = toneAnalyzer;
 }
 
+//This function gets the predominant 'tone' of a string from Watson
 ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
   const toneParams = {
     'tone_input': { 'text': text },
@@ -28,6 +29,4 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
 
 };
 
-const analyse = new ToneAnalyzerCall();
-
-analyse.analyzeSentiment('A government led by Jeremy Corbyn would pose an existential threat to Jewish life in the UK, a joint editorial published by the country’s three most prominent Jewish newspapers has claimed.')
+module.exports = ToneAnalyzerCall;

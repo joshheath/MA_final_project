@@ -10,50 +10,55 @@ function TwitCall(client = new Twitter({
   this._client = client
 }
 
-TwitCall.prototype.getTrends = function () {
-  return new Promise(resolve => {
-    this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=44418`, function(err, data, response) {
-      if(!err) {
-        console.log(data[0].trends[0].name)
-        var top10Trends = []
-        for(let i = 0; i < 10; i++) {
-          top10Trends.push(data[0].trends[i].name)
-        }
-        console.log(top10Trends)
-        resolve(top10Trends);
-      } else {
-        console.log(err);
+// This function gets the top 10 trends from Twitter.
+// Pass in geolocator number.
+TwitCall.prototype.getTrends = function(location) {
+  this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}`, function(err, data, response) {
+    if(!err) {
+      console.log(data[0].trends[0].name)
+      var top10Trends = []
+      for(let i = 0; i < 10; i++) {
+        top10Trends.push(data[0].trends[i].name)
       }
-    })
+      console.log(top10Trends)
+      return(top10Trends);
+    } else {
+      console.log(err);
+    }
   })
 };
 
+// This function gets the tweets associated with a given trend.
+// Pass in the trend.
+// It returns a hash with 'trend' and 'tweets' as keys.
 TwitCall.prototype.getTweets = function(trend) {
-  return new Promise(resolve => {
-    const params = {
-      q: `${trend}`,
-      count: 10,
-      lang: 'en'
+  const params = {
+    q: `${trend}`,
+    count: 10,
+    lang: 'en'
+  }
+  const trendHash = {trend: "", tweets: []}
+  this._client.get('search/tweets', params, function(err, data, response) {
+    trendHash.trend = trend;
+    if (!err) {
+      data.statuses.forEach(function(tweet) {
+        trendHash.tweets.push(tweet.text)
+      })
+    } else {
+      console.log(err)
     }
-    const trendHash = {trend: "", tweets: []}
-    this._client.get('search/tweets', params, function(err, data, response) {
-      trendHash.trend = trend;
-      if (!err) {
-        data.statuses.forEach(function(tweet) {
-          trendHash.tweets.push(tweet.text)
-        })
-      } else {
-        console.log(err)
-      }
-      console.log(trendHash)
-      resolve(trendHash);
-    })
+    console.log(trendHash)
+    return(trendHash);
   })
 }
 
-
-var twitcall = new TwitCall();
-
-twitcall.getTweets('Flipper');
+// This function just posts to our bot. Pass in the tweet as argument.
+TwitCall.prototype.updateStatus = function (status) {
+  this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
+    if(error) throw error;
+    console.log(tweet);  // Tweet body.
+    console.log(response);  // Raw response object.
+  });
+};
 
 module.exports = TwitCall;
