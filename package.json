@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^6.0.0",
     "nodemon": "^1.18.3",
+    "react": "^16.4.1",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.7.0"
   },
