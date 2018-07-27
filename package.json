@@ -1,0 +1,29 @@
+{
+  "name": "ma_final_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshheath/MA_final_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshheath/MA_final_project/issues"
+  },
+  "homepage": "https://github.com/joshheath/MA_final_project#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "nodemon": "^1.18.3",
+    "react": "^16.4.1",
+    "twitter": "^1.7.1",
+    "watson-developer-cloud": "^3.7.0"
+  },
+  "devDependencies": {
+    "jest": "^23.4.1"
+  }
+}
