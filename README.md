@@ -24,3 +24,18 @@ Things we agreed:
 - Code reviews
 - Removing ability to push directly to master branch
 - Testing (front end & API)
+
+
+## Thursday planning session  
+
+The second two day sprint focused on the following user stories:
+
+> As a user  
+> So I know what's going on in the world  
+> I can see a list of top hashtags on the landing page  
+
+> As a group member  
+> So I know the API data is being handled correctly  
+> All the JS API functions are fully tested  
+
+
