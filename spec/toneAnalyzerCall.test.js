@@ -3,7 +3,6 @@ const ToneAnalyzerCall = require('../src/ToneAnalyzerCall')
   var mockToneAnalyzer;
   var toneanalyzercall;
 
-
   describe("#analyzeSentiment", function(){
     it('assesses the sentiment of tweets', function(done){
       mockToneAnalyzer = {

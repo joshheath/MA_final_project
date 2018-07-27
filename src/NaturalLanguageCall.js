@@ -40,6 +40,5 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
     })
   });
 };
-var output = new NaturalLanguageCall();
-output.analyzeLanguage("we love javascript")
+
 module.exports = NaturalLanguageCall;
