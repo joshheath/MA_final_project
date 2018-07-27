@@ -7,7 +7,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('Hashtag', () => {
   it('Hashtag renders hello world', () => {
-    const hashtags = [ '#FelizJueves',
+    const hashtagsList = [ '#FelizJueves',
     '#OhMy2ndWin',
     '#ThursdayThoughts',
     '#DíaDeLosAbuelos',
@@ -18,7 +18,6 @@ describe('Hashtag', () => {
     'Mick Jagger',
     'Adil Rashid' ];
 
-    const list = Enzyme.shallow(<Hashtag data={hashtags}/>);
-    console.log(list.props());
+    const list = Enzyme.shallow(<Hashtag hashtags={hashtagsList}/>);
   });
 });
