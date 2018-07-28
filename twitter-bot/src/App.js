@@ -1,3 +1,7 @@
+import React, { Component } from 'react'
+import './App.css'
+import Hashtag from './components/hashtag.jsx'
+=======
 import React, { Component } from 'react';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
@@ -11,7 +15,7 @@ const data = [
 ];
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div className="App">
         <header className="App-header">
@@ -21,7 +25,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div>
-          <Hashtag hashtags={["matt", "wareing"]}/>
+          <Hashtag hashtags={['matt', 'wareing']}/>
         </div>
         <div>
         <div>
@@ -44,8 +48,8 @@ class App extends Component {
             </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
