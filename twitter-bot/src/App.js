@@ -1,7 +1,3 @@
-import React, { Component } from 'react'
-import './App.css'
-import Hashtag from './components/hashtag.jsx'
-=======
 import React, { Component } from 'react';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
