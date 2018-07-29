@@ -72,7 +72,7 @@ The second two day sprint focused on the following user stories:
 
 ## Second retro
 
-![Second retro](/assets/retro2.jpg "retro 2")
+![Second retro](/assets/retro2.JPG "retro 2")
 
 We made some significant progress in the second sprint:  
 - Set up React so we could begin developing our front end
@@ -82,7 +82,7 @@ We made some significant progress in the second sprint:
 
 ## Middle weekend work
 
-![Weekend work](/assets/weekend_work.jpg "weekend-work") 
+![Weekend work](/assets/weekend_work.JPG "weekend-work") 
 
 Over the weekend we split up several tasks that could be done individually
 
