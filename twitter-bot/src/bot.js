@@ -8,6 +8,8 @@ const tony = new ToneAnalyzerCall();
 const natural = new NaturalLanguageCall();
 const reporter = new Reporter();
 
+const locations = [{name: 'London', woeid: 44418}, {name: 'Paris', woeid: 615702}, {name: 'New York', woeid: 2459115}, {name: 'Berlin', woeid: 638242}]
+
 async function asyncCall(trend) {
   var tweets = await twitcall.getTweets(trend);
   var tone = await tony.analyzeSentiment(tweets.tweets.join(' '))
@@ -16,19 +18,18 @@ async function asyncCall(trend) {
   var post = await twitcall.updateStatus(report);
 }
 
-const london = 44418;
-const paris = 615702;
-const newyork = 2459115;
-const berlin = 638242;
+locations.forEach(location => {
+  twitcall.getTrends(location.woeid).then(trends => {
+    twitcall.updateStatus(`Top trending topics in ${location.name}: ${trends.join(', ')}`);
+  });
+});
 
-const locationarray = [44418, 615702, 2459115, 638242]
-
-locationarray.forEach(location => {
-
-  twitcall.getTrends(location).then(trends => {
-    trends.forEach(trend => {
-      asyncCall(trend);
-    })
-  })
-
-})
+// locations.forEach(location => {
+//
+//   twitcall.getTrends(location.woeid).then(trends => {
+//     trends.forEach(trend => {
+//       asyncCall(trend);
+//     })
+//   })
+//
+// })
