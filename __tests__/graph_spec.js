@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Hashtag from '../src/components/hashtag.jsx';
+import Graph from '../src/components/graph.jsx';
 
 Enzyme.configure({ adapter: new Adapter() })
 
