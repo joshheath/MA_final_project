@@ -24,12 +24,11 @@ locations.forEach(location => {
   });
 });
 
-// locations.forEach(location => {
-//
-//   twitcall.getTrends(location.woeid).then(trends => {
-//     trends.forEach(trend => {
-//       asyncCall(trend);
-//     })
-//   })
-//
-// })
+
+locations.forEach(location => {
+  twitcall.getTrends(location.woeid).then(trends => {
+    trends.forEach(trend => {
+      asyncCall(trend);
+    })
+  })
+})
