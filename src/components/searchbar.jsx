@@ -8,7 +8,7 @@ export default class SearchBar extends React.Component {
         // 2. get the text from that input
         const example = this.myInput.current.value
         // 3. send search query
-        console.log(example)
+        
     }
     render() {
         return (
