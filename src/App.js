@@ -16,7 +16,7 @@ const data = [
   {emotion: 5, index: 0.3}
 ];
 
-const data2 = [ { trend: '#الاخ_الكبير_مظلوم_ومضطهد', volume: 16926 },
+const data2 = [ { trend: '#الاخ_الكبير_مظلوم_ومضطهد', volume: 16926, sentiment: 'neutral', concepts:['happy, berlin wall, oman'] },
   { trend: '#FelizMartes', volume: 16793 },
   { trend: '#NationalAvocadoDay', volume: null },
   { trend: '#MasterChefAU', volume: null },
@@ -34,6 +34,12 @@ const columns = [{
   Header: 'Volume',
   accessor: 'volume',
   Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+}, {
+  Header: 'Sentiment',
+  accessor: 'sentiment',
+}, {
+  Header: 'Concepts',
+  accessor: 'concepts',
 }]
 
 

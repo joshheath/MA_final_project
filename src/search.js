@@ -12,10 +12,24 @@ const natural = new NaturalLanguageCall();
 
 async function asyncCall(trend) {
   var tweets = await twitcall.getTweets(trend);
+  var trends = await twitcall.getTrends(1)
   var tone = await tony.analyzeSentiment(tweets.tweets.join(' '))
   var analysis = await natural.analyzeLanguage(tweets.tweets.join(' '));
-  var data = [analysis.emotions]
+  var data = [analysis.sentiment, analysis.concepts]
   console.log(data)
+  console.log(trends.tweet_volume)
 }
+// var top10Trends = ["mugabe", "twitter", "racism"]
+// var newData = []
+// top10Trends.forEach(x => {
+//   newData.push(asyncCall(x));
+// })
 
-asynccall = asyncCall('zimbabwe')
+
+async function Muthafunction() {
+  var trends = await twitcall.getTrends(1)
+  var tweets = trend.forEach(trend => {
+    var top10Tweets = await twitcall.getTweets(trend.trend);
+  })
+
+}

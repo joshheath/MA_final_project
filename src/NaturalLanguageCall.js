@@ -1,8 +1,6 @@
 const NaturalLanguageUnderstanding = require('watson-developer-cloud/natural-language-understanding/v1');
 require('dotenv').config()
 
-console.log("Environment variables", process.env);
-
 function NaturalLanguageCall(analyzer = new NaturalLanguageUnderstanding({
   username: process.env.REACT_APP_NLA_USERNAME,
   password: process.env.REACT_APP_NLA_PASSWORD,
@@ -36,11 +34,14 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
         report['sentiment'] = sentiment;
         report['emotions'] = emotions;
         report['concepts'] = concepts;
-        console.log(report);
+        // console.log(report);
         resolve(report);
       }
     })
   });
 };
+//
+// nlc = new NaturalLanguageCall()
+// nlc.analyzeLanguage("NationalAvocadoDay")
 
-export default NaturalLanguageCall;
+module.exports = NaturalLanguageCall;
