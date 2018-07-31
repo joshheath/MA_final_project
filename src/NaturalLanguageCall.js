@@ -1,9 +1,11 @@
 const NaturalLanguageUnderstanding = require('watson-developer-cloud/natural-language-understanding/v1');
 require('dotenv').config()
 
+console.log("Environment variables", process.env);
+
 function NaturalLanguageCall(analyzer = new NaturalLanguageUnderstanding({
-  username: process.env.NLA_USERNAME,
-  password: process.env.NLA_PASSWORD,
+  username: process.env.REACT_APP_NLA_USERNAME,
+  password: process.env.REACT_APP_NLA_PASSWORD,
   version: '2018-03-16'
 })) {
   this._analyzer = analyzer;
@@ -41,4 +43,4 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
   });
 };
 
-module.exports = NaturalLanguageCall;
+export default NaturalLanguageCall;
