@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
+import SearchBar from './components/searchbar';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 const data = [
@@ -24,6 +25,7 @@ class App extends Component {
           <Hashtag hashtags={['matt', 'wareing']}/>
         </div>
         <div>
+          <SearchBar />
         <div>
         <VictoryChart
         domainPadding={20}
