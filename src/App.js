@@ -6,7 +6,7 @@ import NaturalLanguageCall from './NaturalLanguageCall.js'
 
 const nlc = new NaturalLanguageCall();
 
-class App extends Component {
+class Graph extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -50,5 +50,23 @@ class App extends Component {
     )
   }
 }
+
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  render () {
+    return (
+      <div>
+        <Graph />
+      </div>
+    )
+  }
+}
+
+
 
 export default App
