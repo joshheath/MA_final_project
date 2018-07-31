@@ -24,8 +24,7 @@ class Graph extends Component {
     console.log(this.state)
     const analysis = [{emotion: 1, index: this.state.sadness}, {emotion: 2, index: this.state.fear}, {emotion: 3, index: this.state.anger}, {emotion: 4, index: this.state.disgust}, {emotion: 5, index: this.state.joy}]
     return (
-      <div className="App">
-        <p>#Arnold Schwartznegger</p>
+      <div className="Graph">
         <div>
         <div>
         <VictoryChart
@@ -60,7 +59,10 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className="App">
+        <div className="Header">
+        <h1>Our Conversation</h1>
+        </div>
         <Graph />
       </div>
     )

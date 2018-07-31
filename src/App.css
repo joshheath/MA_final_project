@@ -27,3 +27,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Graph {
+  width: 40%;
+  border-width: thin;
+}
