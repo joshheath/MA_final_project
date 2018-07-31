@@ -2,10 +2,10 @@ const Twitter = require('twitter');
 require('dotenv').config()
 
 function TwitCall(client = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  consumer_key: process.env.REACT_APP_TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.REACT_APP_TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_SECRET
 })) {
   this._client = client
 }
@@ -19,7 +19,7 @@ TwitCall.prototype.getTrends = function(location) {
        // console.log(data[0].trends[0].name)
        var top10Trends = []
        for(let i = 0; i < 10; i++) {
-         top10Trends.push(data[0].trends[i].name)
+         top10Trends.push({trend: data[0].trends[i].name,volume: data[0].trends[i].tweet_volume})
        }
        console.log(top10Trends)
        resolve(top10Trends);
@@ -72,4 +72,7 @@ TwitCall.prototype.updateStatus = function (status) {
   });
 };
 
+twitcall = new TwitCall()
+
+twitcall.getTrends(1)
 module.exports = TwitCall;
