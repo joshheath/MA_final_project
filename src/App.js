@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
+import SearchBar from './components/searchbar';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import NaturalLanguageCall from './NaturalLanguageCall.js'
 
@@ -47,6 +48,7 @@ class Graph extends Component {
     return (
       <div className="Graph">
         <div>
+          <SearchBar />
         <div>
         <VictoryChart
         domainPadding={20}
