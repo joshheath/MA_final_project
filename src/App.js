@@ -6,31 +6,23 @@ import NaturalLanguageCall from './NaturalLanguageCall.js'
 
 const nlc = new NaturalLanguageCall();
 
-
-
-const data = [
-  {emotion: 1, index: 0.1},
-  {emotion: 2, index: 0.2},
-  {emotion: 3, index: 0.6},
-  {emotion: 4, index: 0.4},
-  {emotion: 5, index: 0.3}
-];
-
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      componentData: null
+
     }
   }
   componentDidMount() {
-    nlc.analyzeLanguage("nice one mate").then((data) => {
+    nlc.analyzeLanguage("The letter was written by Zoe Carew who became incensed when she saw the “Linemen” signs – which indicate that people installing or fixing power lines are working in the area – while on her way to visit her grandparents in the city of Eastbourne.").then((data) => {
       let componentData = data.emotions;
       this.setState(componentData);
     });
   }
 
   render () {
+    console.log(this.state)
+    const analysis = [{emotion: 1, index: this.state.sadness}, {emotion: 2, index: this.state.fear}, {emotion: 3, index: this.state.anger}, {emotion: 4, index: this.state.disgust}, {emotion: 5, index: this.state.joy}]
     return (
       <div className="App">
         <p>#Arnold Schwartznegger</p>
@@ -48,7 +40,7 @@ class App extends Component {
         tickFormat={(x) => (`${x / 1}`)}
         />
             <VictoryBar
-            data={data}
+            data={analysis}
             x="emotion"
             y="index" />
             </VictoryChart>
