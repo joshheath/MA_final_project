@@ -61,6 +61,25 @@ class App extends Component {
            showPagination={false}
            defaultPageSize={10}
            sortable={true}
+           width={15}
+
+           getTdProps={(state, rowInfo, column, instance) => {
+             return {
+              onClick: (e, handleOriginal) => {
+                console.log("It was in this column:", column);
+                console.log("It was in this row:", rowInfo);
+
+                // IMPORTANT! React-Table uses onClick internally to trigger
+                // events like expanding SubComponents and pivots.
+                // By default a custom 'onClick' handler will override this functionality.
+                // If you want to fire the original onClick handler, call the
+                // 'handleOriginal' function.
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              }
+            };
+          }}
           />
         </div>
 
