@@ -2,17 +2,34 @@ import React, { Component } from 'react';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
-import * as NaturalLanguageCall from './NaturalLanguageCall';
+import NaturalLanguageCall from './NaturalLanguageCall.js'
+
+const nlc = new NaturalLanguageCall();
+
+
 
 const data = [
-  {emotions: 1, index: 100},
-  {emotions: 2, index: 100},
-  {emotions: 3, index: 100},
-  {emotions: 4, index: 100},
-  {emotions: 5, index: 100}
+  {emotion: 1, index: 0.1},
+  {emotion: 2, index: 0.2},
+  {emotion: 3, index: 0.6},
+  {emotion: 4, index: 0.4},
+  {emotion: 5, index: 0.3}
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      componentData: null
+    }
+  }
+  componentDidMount() {
+    nlc.analyzeLanguage("nice one mate").then((data) => {
+      let componentData = data.emotions;
+      this.setState(componentData);
+    });
+  }
+
   render () {
     return (
       <div className="App">
@@ -32,7 +49,7 @@ class App extends Component {
         />
             <VictoryBar
             data={data}
-            x="emotions"
+            x="emotion"
             y="index" />
             </VictoryChart>
             </div>
