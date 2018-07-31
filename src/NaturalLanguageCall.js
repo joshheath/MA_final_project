@@ -40,4 +40,4 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
   });
 };
 
-export default NaturalLanguageCall;
+module.exports = NaturalLanguageCall;
