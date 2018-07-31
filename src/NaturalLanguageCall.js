@@ -34,7 +34,7 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
         report['sentiment'] = sentiment;
         report['emotions'] = emotions;
         report['concepts'] = concepts;
-        // console.log(report);
+
         resolve(report);
       }
     })
