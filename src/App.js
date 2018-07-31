@@ -6,10 +6,7 @@ import NaturalLanguageCall from './NaturalLanguageCall.js'
 import ReactTable from "react-table"
 import 'react-table/react-table.css'
 
-
 const nlc = new NaturalLanguageCall();
-
-
 
 const data = [
   {emotion: 1, index: 0.1},
@@ -61,6 +58,9 @@ class App extends Component {
           <ReactTable
            data={data2}
            columns={columns}
+           showPagination={false}
+           defaultPageSize={10}
+           sortable={true}
           />
         </div>
 

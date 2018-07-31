@@ -74,5 +74,5 @@ TwitCall.prototype.updateStatus = function (status) {
 
 twitcall = new TwitCall()
 
-twitcall.getTrends(1)
+twitcall.getTrends(23424975)
 module.exports = TwitCall;
