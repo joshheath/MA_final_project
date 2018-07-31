@@ -3,27 +3,38 @@ import './App.css';
 import Hashtag from './components/hashtag.jsx';
 import SearchBar from './components/searchbar';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
+import NaturalLanguageCall from './NaturalLanguageCall.js'
+
+const nlc = new NaturalLanguageCall();
+
+
 
 const data = [
-  {quarter: 1, earnings: 100},
-  {quarter: 2, earnings: 100},
-  {quarter: 3, earnings: 100},
-  {quarter: 4, earnings: 100}
+  {emotion: 1, index: 0.1},
+  {emotion: 2, index: 0.2},
+  {emotion: 3, index: 0.6},
+  {emotion: 4, index: 0.4},
+  {emotion: 5, index: 0.3}
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      componentData: null
+    }
+  }
+  componentDidMount() {
+    nlc.analyzeLanguage("nice one mate").then((data) => {
+      let componentData = data.emotions;
+      this.setState(componentData);
+    });
+  }
+
   render () {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          <Hashtag hashtags={['matt', 'wareing']}/>
-        </div>
+        <p>#Arnold Schwartznegger</p>
         <div>
           <SearchBar />
         <div>
@@ -31,17 +42,17 @@ class App extends Component {
         domainPadding={20}
         >
         <VictoryAxis
-        tickValues={[1, 2, 3, 4]}
-        tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+        tickValues={[1, 2, 3, 4, 5]}
+        tickFormat={["Sadness", "Fear", "Anger", "Disgust", "Joy"]}
         />
         <VictoryAxis
         dependentAxis
-        tickFormat={(x) => (`${x / 100}`)}
+        tickFormat={(x) => (`${x / 1}`)}
         />
             <VictoryBar
             data={data}
-            x="quarter"
-            y="earnings" />
+            x="emotion"
+            y="index" />
             </VictoryChart>
             </div>
         </div>

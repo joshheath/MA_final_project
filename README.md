@@ -7,6 +7,7 @@ This information is presented both via automated Language Reports tweeted out vi
 ## Getting started
 * Fork this repo and clone to your machine
 * Type ```npm i``` into the terminal to install required node packages  
+* Type ```npm start``` to run the app locally
 
 ### Running tests
 * Type ```jest``` into terminal to run the full test suite, or ```jest [file path]``` to run a specific test file.   
