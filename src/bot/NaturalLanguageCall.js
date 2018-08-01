@@ -42,8 +42,5 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
     })
   });
 };
-//
-// nlc = new NaturalLanguageCall()
-// nlc.analyzeLanguage("NationalAvocadoDay")
 
 module.exports = NaturalLanguageCall;
