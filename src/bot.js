@@ -14,21 +14,26 @@ async function asyncCall(trend) {
   var tweets = await twitcall.getTweets(trend);
   var tone = await tony.analyzeSentiment(tweets.tweets.join(' '))
   var analysis = await natural.analyzeLanguage(tweets.tweets.join(' '));
-  var report = await reporter.compile(tweets.trend, tone, analysis);
+  var report = await reporter.compile(tweets.trend, tone.tones, analysis);
   var post = await twitcall.updateStatus(report);
 }
 
-locations.forEach(location => {
-  twitcall.getTrends(location.woeid).then(trends => {
-    twitcall.updateStatus(`Top trending topics in ${location.name}: ${trends.join(', ')}`);
+function tweetTrends() {
+  locations.forEach(location => {
+    twitcall.getTrends(location.woeid).then(trends => {
+      twitcall.updateStatus(`Top trending topics in ${location.name}: ${trends.join(', ')}`);
+    });
   });
-});
+}
 
-
-locations.forEach(location => {
-  twitcall.getTrends(location.woeid).then(trends => {
-    trends.forEach(trend => {
-      asyncCall(trend);
+function tweetReports() {
+  locations.forEach(location => {
+    twitcall.getTrends(location.woeid).then(trends => {
+      trends.forEach(trend => {
+        asyncCall(trend);
+      })
     })
   })
-})
+}
+
+tweetReports();

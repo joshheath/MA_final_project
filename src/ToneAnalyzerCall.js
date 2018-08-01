@@ -3,8 +3,8 @@ require('dotenv').config()
 
 function ToneAnalyzerCall(toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
-  username: process.env.TONEANALYZER_USERNAME,
-  password: process.env.TONEANALYZER_PASSWORD
+  username: process.env.REACT_APP_TONEANALYZER_USERNAME,
+  password: process.env.REACT_APP_TONEANALYZER_PASSWORD
 })) {
   this._toneAnalyzer = toneAnalyzer;
 }

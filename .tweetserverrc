@@ -1,0 +1,9 @@
+{
+    "port": 1234,
+    "auth": {
+        "accessToken": "1021345470688518149-EQzHdTonsXvfqEsVGNhNmIccZlqnwO",
+        "accessSecret": "AMNEkp1u26rh5zF2TtWHIIVWoGJdBv7ripSabslYeNtZ6",
+        "consumerKey": "Mey5IF81sxXw5I5oArCt9dPwe",
+        "consumerSecret": "9doVHMQEU0vETvOwoMhnsebMYjhYbFcxzsNHoXc7cOnSSblSyh"
+    }
+}
