@@ -26,6 +26,10 @@ class App extends Component {
     }
   }
 
+  myCallback = (dataFromChild) => {
+    this.componentDidMount(dataFromChild)
+  }
+
   myInput = React.createRef()
   getData = event => {
     event.preventDefault();
@@ -47,7 +51,6 @@ class App extends Component {
   }
 
   render () {
-
     return (
       <div className="App">
         <div className="Header">
@@ -66,6 +69,7 @@ class App extends Component {
         </div>
         <Table
           data2={this.state.data2}
+          callbackFromParent={this.myCallback}
         />
         <Graph
           emotionData={this.state.emotionData}
