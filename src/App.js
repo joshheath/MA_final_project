@@ -51,7 +51,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Header">
-        <h1>Our Conversation</h1>
+        <h1>SentimentAlyzer</h1>
         </div>
         <div className="searchbar">
         <form className="search-tweets" onSubmit={this.getData}>
@@ -59,9 +59,9 @@ class App extends Component {
             type="text"
             ref={this.myInput}
             required
-            placeholder="Tweet Trend"
+            placeholder="Trend"
             />
-            <button type="submit">Analyse</button>
+            <button type="submit">Analyze</button>
         </form>
         </div>
         <Table

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactTable from "react-table"
 import 'react-table/react-table.css'
 import TwitCall from '../TwitCall.js'
-import NaturalLanguageCall from './NaturalLanguageCall.js'
+import NaturalLanguageCall from '../NaturalLanguageCall.js'
 
 
 const twitcall = new TwitCall()
@@ -19,6 +19,8 @@ class Table extends Component {
 
   render () {
   return (
+    <div className="Table">
+    <h2>Top 10 Twitter Trends</h2>
     <ReactTable
      data={this.props.data2}
      columns={columns}
@@ -30,8 +32,6 @@ class Table extends Component {
      getTdProps={(state, rowInfo, column, instance) => {
        return {
         onClick: (e, handleOriginal) => {
-          // console.log("It was in this column:", column);
-          console.log("It was in this row:", rowInfo.original.trend);
           const nameOfTrend = rowInfo.original.trend
           this.myInput
           if (handleOriginal) {
@@ -40,7 +40,7 @@ class Table extends Component {
         }
       };
     }}
-    />
+    /></div>
   )}
 }
 
