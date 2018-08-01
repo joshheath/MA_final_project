@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import ReactTable from "react-table"
 import 'react-table/react-table.css'
 import TwitCall from '../TwitCall.js'
+import NaturalLanguageCall from './NaturalLanguageCall.js'
+
 
 const twitcall = new TwitCall()
-
-var trends = await twitcall.getTrends(1)
-console.log(trends)
+const nlc = new NaturalLanguageCall();
 
 const columns = [
   {Header: 'Trend', accessor: 'trend'},
@@ -16,27 +16,24 @@ const columns = [
 ]
 
 class Table extends Component {
+
   render () {
   return (
     <ReactTable
-     data={data2}
+     data={this.props.data2}
      columns={columns}
      showPagination={false}
      defaultPageSize={10}
      sortable={true}
-     width={15}
+     width={35}
 
      getTdProps={(state, rowInfo, column, instance) => {
        return {
         onClick: (e, handleOriginal) => {
-          console.log("It was in this column:", column);
-          console.log("It was in this row:", rowInfo);
-
-          // IMPORTANT! React-Table uses onClick internally to trigger
-          // events like expanding SubComponents and pivots.
-          // By default a custom 'onClick' handler will override this functionality.
-          // If you want to fire the original onClick handler, call the
-          // 'handleOriginal' function.
+          // console.log("It was in this column:", column);
+          console.log("It was in this row:", rowInfo.original.trend);
+          const nameOfTrend = rowInfo.original.trend
+          this.myInput
           if (handleOriginal) {
             handleOriginal();
           }
