@@ -80,3 +80,6 @@ We made some significant progress in the second sprint:
 ![Weekend work](/assets/weekend_work.JPG "weekend-work") 
 Over the weekend we split up several tasks that could be done individually
 
+![Third retro](/assets/retro3.jpg "retro 3")
+![Third retro](/assets/retro3.1.jpg "retro 3")
+![Third retro](/assets/retro3.2.jpg "retro 3")
