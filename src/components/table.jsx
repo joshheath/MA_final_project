@@ -16,8 +16,8 @@ const columns = [
 
 class Table extends Component {
 
-  someFn = (listInfo) => {
-      this.props.callbackFromParent(listInfo);
+  renderGraph = (listInfo) => {
+      this.props.callbackFromApp(listInfo);
     }
 
   render () {
@@ -36,7 +36,7 @@ class Table extends Component {
             // console.log("It was in this column:", column);
             console.log("It was in this row:", rowInfo.original.trend);
             const nameOfTrend = rowInfo.original.trend
-            this.someFn(nameOfTrend)
+            this.renderGraph(nameOfTrend)
             if (handleOriginal) {
               handleOriginal();
             }

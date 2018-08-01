@@ -26,8 +26,9 @@ class App extends Component {
     }
   }
 
-  myCallback = (dataFromChild) => {
-    this.componentDidMount(dataFromChild)
+  myCallback = (dataFromTable) => {
+    this.componentDidMount(dataFromTable)
+    console.log(dataFromTable)
   }
 
   myInput = React.createRef()
@@ -54,7 +55,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Header">
-        <h1>Our Conversation</h1>
+        <h1>Twitter Sentiment Analysis</h1>
         </div>
         <div className="searchbar">
         <form className="search-tweets" onSubmit={this.getData}>
@@ -69,7 +70,7 @@ class App extends Component {
         </div>
         <Table
           data2={this.state.data2}
-          callbackFromParent={this.myCallback}
+          callbackFromApp={this.myCallback}
         />
         <Graph
           emotionData={this.state.emotionData}
