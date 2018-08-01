@@ -25,14 +25,13 @@ export default class SearchBar extends React.Component {
     render() {
         return (
         <form className="search-tweets" onSubmit={this.getData}>
-            <h2>Please Enter A Tweet To See Trends For</h2>
-            <input 
-            type="text" 
+            <input
+            type="text"
             ref={this.myInput}
-            required 
-            placeholder="Tweet Trend" 
+            required
+            placeholder="Tweet Trend"
             />
-            <button type="submit">See Trends</button>
+            <button type="submit">Analyse</button>
         </form>
         )
     }
