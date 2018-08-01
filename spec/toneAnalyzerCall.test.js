@@ -1,4 +1,4 @@
-const ToneAnalyzerCall = require('../src/ToneAnalyzerCall')
+const ToneAnalyzerCall = require('../src/bot/ToneAnalyzerCall')
 
 var mockToneAnalyzer
 var toneanalyzercall

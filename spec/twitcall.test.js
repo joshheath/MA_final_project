@@ -1,4 +1,4 @@
-const TwitCall = require('../src/TwitCall')
+const TwitCall = require('../src/bot/TwitCall')
 
 var mockTwitter
 var promisedData = [{trends: [{name: '#wednesdaywisdom'},

@@ -1,4 +1,4 @@
-const NaturalLanguageCall = require('../src/NaturalLanguageCall')
+const NaturalLanguageCall = require('../src/bot/NaturalLanguageCall')
 
 var mockNaturalLanguage
 var naturallanguagecall
