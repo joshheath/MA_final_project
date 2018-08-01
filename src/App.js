@@ -92,6 +92,8 @@ class App extends Component {
           <Graph
             emotionData={this.state.emotionData}
           />
+          <Table />
+
         </div>
       )
     }
