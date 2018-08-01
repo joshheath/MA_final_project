@@ -31,4 +31,4 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
   })
 };
 
-export default ToneAnalyzerCall;
+module.exports = ToneAnalyzerCall;
