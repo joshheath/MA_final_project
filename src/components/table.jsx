@@ -33,8 +33,6 @@ class Table extends Component {
        getTdProps={(state, rowInfo, column, instance) => {
          return {
           onClick: (e, handleOriginal) => {
-            // console.log("It was in this column:", column);
-            console.log("It was in this row:", rowInfo.original.trend);
             const nameOfTrend = rowInfo.original.trend
             this.renderGraph(nameOfTrend)
             if (handleOriginal) {
