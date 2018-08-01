@@ -53,7 +53,6 @@ class App extends Component {
   }
   myInput = React.createRef();
   getData = event => {
-
       event.preventDefault();
       const trend = this.myInput.current.value
       this.componentDidMount(trend)
@@ -130,7 +129,6 @@ class Table extends Component {
     />
   )}
 }
-
 
 class Graph extends Component {
   render () {

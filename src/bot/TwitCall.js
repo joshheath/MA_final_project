@@ -14,12 +14,12 @@ function TwitCall(client = new Twitter({
 // Pass in geolocator number.
 TwitCall.prototype.getTrends = function(location) {
   return new Promise((resolve, reject) => {
-    this._client.get(`http://localhost:7890/1.1/trends/place.json?id=${location}`, function(err, data, response) {
+    this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}`, function(err, data, response) {
      if(!err) {
-
+       // console.log(data[0].trends[0].name)
        var top10Trends = []
        for(let i = 0; i < 10; i++) {
-         top10Trends.push({trend: data[0].trends[i].name,volume: data[0].trends[i].tweet_volume})
+         top10Trends.push(data[0].trends[i].name)
        }
        console.log(top10Trends)
        resolve(top10Trends);
@@ -44,7 +44,7 @@ TwitCall.prototype.getTweets = function(trend) {
       lang: 'en'
     }
     const trendHash = {trend: "", tweets: []}
-    this._client.get(`http://localhost:7890/1.1/search/tweets.json?q=${trend}`, params, function(err, data, response) {
+    this._client.get('search/tweets', params, function(err, data, response) {
       trendHash.trend = trend;
       if (!err) {
         data.statuses.forEach(function(tweet) {
@@ -65,12 +65,9 @@ TwitCall.prototype.updateStatus = function (status) {
   return new Promise((resolve, reject) => {
     this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
       if(error) reject(error);
-      // console.log(tweet);
-      resolve(tweet)  // Tweet body.
-      // console.log(response);  // Raw response object.
       resolve(tweet)  // Tweet body.
     });
   });
 };
 
-export default TwitCall;
+module.exports = TwitCall;
