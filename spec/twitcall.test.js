@@ -36,7 +36,7 @@ describe('#getTrends', function () {
 
   it('returns tweets in an array', function (done) {
     twitcall.getTrends().then(function (pData) {
-      expect(pData[0]).toEqual('#wednesdaywisdom')
+      expect(pData[0]).toEqual({"trend": "#wednesdaywisdom", "volume": undefined})
     })
     done()
   })

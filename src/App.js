@@ -4,8 +4,7 @@ import Hashtag from './components/hashtag.jsx'
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory'
 import NaturalLanguageCall from './NaturalLanguageCall.js'
 import TwitCall from './TwitCall.js'
-import ReactTable from "react-table"
-import 'react-table/react-table.css'
+import Table from './components/table.jsx'
 
 const nlc = new NaturalLanguageCall();
 const twitcall = new TwitCall()
@@ -18,32 +17,6 @@ const data = [
   {emotion: 5, index: 0.3}
 ];
 
-const data2 = [ { trend: '#الاخ_الكبير_مظلوم_ومضطهد', volume: 16926, sentiment: 'neutral', concepts:['happy, berlin wall, oman'] },
-  { trend: '#FelizMartes', volume: 16793 },
-  { trend: '#NationalAvocadoDay', volume: null },
-  { trend: '#MasterChefAU', volume: null },
-  { trend: '#HappyBirthdayHarryPotter', volume: 29483 },
-  { trend: 'VRoid', volume: 18127 },
-  { trend: 'コマンドコード', volume: 52077 },
-  { trend: '스텔라', volume: 62280 },
-  { trend: 'Cüneyt Çakır', volume: null },
-  { trend: 'Vijay Mallya', volume: null } ]
-
-const columns = [{
-  Header: 'Trend',
-  accessor: 'trend' // String-based value accessors!
-}, {
-  Header: 'Volume',
-  accessor: 'volume',
-  Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-}, {
-  Header: 'Sentiment',
-  accessor: 'sentiment',
-}, {
-  Header: 'Concepts',
-  accessor: 'concepts',
-}]
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -51,7 +24,7 @@ class App extends Component {
       emotionData: []
     }
   }
-  myInput = React.createRef();
+  myInput = React.createRef()
   getData = event => {
 
       event.preventDefault();
@@ -89,47 +62,14 @@ class App extends Component {
               <button type="submit">Analyse</button>
           </form>
           </div>
+          <Table />
           <Graph
             emotionData={this.state.emotionData}
           />
-          <Table />
-
         </div>
       )
     }
   }
-
-class Table extends Component {
-  render () {
-  return (
-    <ReactTable
-     data={data2}
-     columns={columns}
-     showPagination={false}
-     defaultPageSize={10}
-     sortable={true}
-     width={15}
-
-     getTdProps={(state, rowInfo, column, instance) => {
-       return {
-        onClick: (e, handleOriginal) => {
-          console.log("It was in this column:", column);
-          console.log("It was in this row:", rowInfo);
-
-          // IMPORTANT! React-Table uses onClick internally to trigger
-          // events like expanding SubComponents and pivots.
-          // By default a custom 'onClick' handler will override this functionality.
-          // If you want to fire the original onClick handler, call the
-          // 'handleOriginal' function.
-          if (handleOriginal) {
-            handleOriginal();
-          }
-        }
-      };
-    }}
-    />
-  )}
-}
 
 
 class Graph extends Component {

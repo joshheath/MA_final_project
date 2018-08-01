@@ -21,7 +21,6 @@ TwitCall.prototype.getTrends = function(location) {
        for(let i = 0; i < 10; i++) {
          top10Trends.push({trend: data[0].trends[i].name,volume: data[0].trends[i].tweet_volume})
        }
-       console.log(top10Trends)
        resolve(top10Trends);
      } else {
        console.log(err);
