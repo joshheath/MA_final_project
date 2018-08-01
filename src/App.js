@@ -4,9 +4,9 @@ import Hashtag from './components/hashtag.jsx';
 import SearchBar from './components/searchbar';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import NaturalLanguageCall from './NaturalLanguageCall.js'
-
+import TwitCall from './TwitCall.js'
 const nlc = new NaturalLanguageCall();
-
+const twitcall = new TwitCall()
 
 class App extends Component {
   constructor(props) {
@@ -15,31 +15,51 @@ class App extends Component {
       emotionData: []
     }
   }
-
-  componentDidMount() {
-    nlc.analyzeLanguage("The Saudi ministry of defence is run by His Royal Highness Prince Mohammed bin Salman bin Abdulaziz Al Saud. The 32-year-old, known as MbS, is said to be the world’s youngest defence minister and is also the kingdom’s deputy prime minister.").then((data) => {
-      let apiData = data.emotions;
-      let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
-      this.setState({emotionData: emotionData});
-      console.log(this.state);
-    });
-
+  myInput = React.createRef();
+  getData = event => {
+      event.preventDefault();
+      const trend = this.myInput.current.value
+      this.componentDidMount(trend)
   }
 
-  render () {
-    console.log(this.state.emotionData);
-    return (
-      <div className="App">
-        <div className="Header">
-        <h1>Our Conversation</h1>
+  componentDidMount(trend) {
+      twitcall.getTweets(trend).then((tweets) => {
+          nlc.analyzeLanguage(tweets.tweets.join(' ')).then((data) => {
+            let apiData = data.emotions;
+            console.log(apiData)
+            let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
+            this.setState({emotionData: emotionData});
+          console.log(emotionData)
+          });
+      })
+    }
+
+    render () {
+      console.log(this.state.emotionData);
+      return (
+        <div className="App">
+          <div className="Header">
+          <h1>Our Conversation</h1>
+          </div>
+          <div className="searchbar">
+          <form className="search-tweets" onSubmit={this.getData}>
+              <input
+              type="text"
+              ref={this.myInput}
+              required
+              placeholder="Tweet Trend"
+              />
+              <button type="submit">Analyse</button>
+          </form>
+          </div>
+          <Graph
+            emotionData={this.state.emotionData}
+          />
         </div>
-        <Graph
-          emotionData={this.state.emotionData}
-        />
-      </div>
-    )
+      )
+    }
   }
-}
+  
 
 class Graph extends Component {
 
@@ -48,7 +68,6 @@ class Graph extends Component {
     return (
       <div className="Graph">
         <div>
-          <SearchBar />
         <div>
         <VictoryChart
         domainPadding={20}

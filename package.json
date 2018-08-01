@@ -27,6 +27,7 @@
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "twitter": "^1.7.1",
+    "twitter-proxy": "^2.0.0",
     "victory": "^30.1.0",
     "watson-developer-cloud": "^3.7.0"
   },
