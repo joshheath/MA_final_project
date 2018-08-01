@@ -37,11 +37,13 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
         report['sentiment'] = sentiment;
         report['emotions'] = emotions;
         report['concepts'] = concepts;
-        console.log(report)
         resolve(report);
       }
     })
   });
 };
+//
+// nlc = new NaturalLanguageCall()
+// nlc.analyzeLanguage("NationalAvocadoDay")
 
-export default NaturalLanguageCall;
+module.exports = NaturalLanguageCall;

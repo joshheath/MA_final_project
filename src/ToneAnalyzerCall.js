@@ -24,11 +24,13 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
       } else {
         const tones = {tones: []}
         analysis.document_tone.tones.forEach(tone => {tones.tones.push(tone.tone_name)})
-        console.log(tones);
+
         resolve(tones);
       }
     }); 0;
   })
 };
+// tone = new ToneAnalyzerCall()
+// tone.analyzeSentiment("NationalAvocadoDay")
 
 export default ToneAnalyzerCall;
