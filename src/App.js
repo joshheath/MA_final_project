@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
 import './App.css';
 import Hashtag from './components/hashtag.jsx';
 import SearchBar from './components/searchbar';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import NaturalLanguageCall from './NaturalLanguageCall.js'
+import Api from './components/api.jsx'
 
 const nlc = new NaturalLanguageCall();
-
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      emotionData: []
+      emotionData: [],
+      response: ''
     }
   }
 
@@ -23,7 +25,6 @@ class App extends Component {
       this.setState({emotionData: emotionData});
       console.log(this.state);
     });
-
   }
 
   render () {
@@ -42,7 +43,6 @@ class App extends Component {
 }
 
 class Graph extends Component {
-
   render () {
     // console.log(this.state)
     return (
@@ -72,5 +72,6 @@ class Graph extends Component {
     )
   }
 }
+
 
 export default App
