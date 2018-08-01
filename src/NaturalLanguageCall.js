@@ -44,9 +44,4 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
   });
 };
 
-var nlc = new NaturalLanguageCall();
-
-nlc.analyzeLanguage("The parliamentary outcome does not necessarily indicate voters’ choice of president, however. The result in the presidential vote – being contested by Zanu-PF president Emmerson Mnangagwa and Nelson Chamisa of the opposition Movement for Democratic Change – is due by 4 August but expected sooner.")
-
 module.exports = NaturalLanguageCall;
-// export default NaturalLanguageCall;

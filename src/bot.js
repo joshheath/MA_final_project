@@ -36,4 +36,7 @@ function tweetReports() {
   })
 }
 
+tweetTrends();
 tweetReports();
+setInterval(tweetTrends, 3600000);
+setInterval(tweetReports, 3600000);
