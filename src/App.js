@@ -137,7 +137,7 @@ class Graph extends Component {
     return (
       <div className="Graph">
         <div>
-        <VictoryChart
+        <VictoryChart height={400} width={400} domain={{y: [0, 1]}}
         domainPadding={20}
         >
         <VictoryAxis
@@ -146,12 +146,15 @@ class Graph extends Component {
         />
         <VictoryAxis
         dependentAxis
-        tickFormat={(x) => (`${x / 1}`)}
+        // tickFormat={(x) => (`${x / 1}`)}
         />
             <VictoryBar
+            barRatio={0.8}
             data={this.props.emotionData}
             x="emotion"
-            y="index" />
+            y="index"
+            style={{ data: { fill: "#c43a31", stroke: "black", strokeWidth: 1 }}}
+             />
             </VictoryChart>
         </div>
       </div>
