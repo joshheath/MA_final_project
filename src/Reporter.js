@@ -1,7 +1,7 @@
 function Reporter() {}
 
 Reporter.prototype.compile = function (trend, toneanalysis, naturallanguage) {
-  return(`LANGUAGE REPORT for ${trend}:\nTone: ${toneanalysis},\nPredominant sentiment: ${naturallanguage.sentiment}\nEmotion ratings:\nsadness: ${naturallanguage.emotions.sadness},\njoy: ${naturallanguage.emotions.joy},\nfear: ${naturallanguage.emotions.fear},\ndisgust: ${naturallanguage.emotions.disgust},\nanger: ${naturallanguage.emotions.anger}\nMain concept(s): ${naturallanguage.concepts[0]}`)
+  return(`LANGUAGE REPORT for ${trend}:\nTone: ${toneanalysis},\nPredominant sentiment: ${naturallanguage.sentiment}\nEmotion ratings:\nsadness: ${naturallanguage.emotions.sadness},\njoy: ${naturallanguage.emotions.joy},\nfear: ${naturallanguage.emotions.fear},\ndisgust: ${naturallanguage.emotions.disgust},\nanger: ${naturallanguage.emotions.anger}\nMain concept(s): ${naturallanguage.concepts}`)
 };
 
 const reporter = new Reporter();
@@ -12,4 +12,4 @@ var naturallanguage = {sentiment: 'neutral', emotions: {sadness: 1, joy: 2, fear
 
 reporter.compile(trend, toneanalysis, naturallanguage);
 
-module.exports = Reporter;
+export default Reporter;

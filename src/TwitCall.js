@@ -70,4 +70,4 @@ TwitCall.prototype.updateStatus = function (status) {
   });
 };
 
-module.exports = TwitCall;
+export default TwitCall;

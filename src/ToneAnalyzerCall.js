@@ -33,4 +33,4 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
 // tone = new ToneAnalyzerCall()
 // tone.analyzeSentiment("NationalAvocadoDay")
 
-module.exports = ToneAnalyzerCall;
+export default ToneAnalyzerCall;

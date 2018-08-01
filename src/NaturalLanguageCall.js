@@ -27,14 +27,16 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
         reject(error);
       } else {
         const sentiment = response.sentiment.document.label;
-        const emotions = response.emotion.document.emotion;
+        var emotions = {}
+        if (response.emotion != null) {
+          emotions = response.emotion.document.emotion;
+        }
         const concepts = []
         response.concepts.forEach(concept => { concepts.push(concept.text) });
         const report = {};
         report['sentiment'] = sentiment;
         report['emotions'] = emotions;
         report['concepts'] = concepts;
-
         resolve(report);
       }
     })
