@@ -16,7 +16,7 @@ TwitCall.prototype.getTrends = function(location) {
   return new Promise((resolve, reject) => {
     this._client.get(`http://localhost:7890/1.1/trends/place.json?id=${location}`, function(err, data, response) {
      if(!err) {
-       
+
        var top10Trends = []
        for(let i = 0; i < 10; i++) {
          top10Trends.push({trend: data[0].trends[i].name,volume: data[0].trends[i].tweet_volume})

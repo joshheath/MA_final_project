@@ -4,12 +4,11 @@ import Hashtag from './components/hashtag.jsx'
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory'
 import NaturalLanguageCall from './NaturalLanguageCall.js'
 import TwitCall from './TwitCall.js'
-const nlc = new NaturalLanguageCall();
-const twitcall = new TwitCall()
 import ReactTable from "react-table"
 import 'react-table/react-table.css'
 
 const nlc = new NaturalLanguageCall();
+const twitcall = new TwitCall()
 
 const data = [
   {emotion: 1, index: 0.1},
@@ -92,48 +91,51 @@ class App extends Component {
           <Graph
             emotionData={this.state.emotionData}
           />
+          <Table />
+
         </div>
       )
     }
+  }
 
- 
-        <div>
-          <ReactTable
-           data={data2}
-           columns={columns}
-           showPagination={false}
-           defaultPageSize={10}
-           sortable={true}
-           width={15}
+class Table extends Component {
+  render () {
+  return (
+    <ReactTable
+     data={data2}
+     columns={columns}
+     showPagination={false}
+     defaultPageSize={10}
+     sortable={true}
+     width={15}
 
-           getTdProps={(state, rowInfo, column, instance) => {
-             return {
-              onClick: (e, handleOriginal) => {
-                console.log("It was in this column:", column);
-                console.log("It was in this row:", rowInfo);
+     getTdProps={(state, rowInfo, column, instance) => {
+       return {
+        onClick: (e, handleOriginal) => {
+          console.log("It was in this column:", column);
+          console.log("It was in this row:", rowInfo);
 
-                // IMPORTANT! React-Table uses onClick internally to trigger
-                // events like expanding SubComponents and pivots.
-                // By default a custom 'onClick' handler will override this functionality.
-                // If you want to fire the original onClick handler, call the
-                // 'handleOriginal' function.
-                if (handleOriginal) {
-                  handleOriginal();
-                }
-              }
-            };
-          }}
-          />
-        </div>
-
+          // IMPORTANT! React-Table uses onClick internally to trigger
+          // events like expanding SubComponents and pivots.
+          // By default a custom 'onClick' handler will override this functionality.
+          // If you want to fire the original onClick handler, call the
+          // 'handleOriginal' function.
+          if (handleOriginal) {
+            handleOriginal();
+          }
+        }
+      };
+    }}
+    />
+  )}
+}
 
 class Graph extends Component {
-
   render () {
     return (
       <div className="Graph">
         <div>
-        <VictoryChart
+        <VictoryChart height={400} width={400} domain={{y: [0, 1]}}
         domainPadding={20}
         >
         <VictoryAxis
@@ -142,12 +144,15 @@ class Graph extends Component {
         />
         <VictoryAxis
         dependentAxis
-        tickFormat={(x) => (`${x / 1}`)}
+        // tickFormat={(x) => (`${x / 1}`)}
         />
             <VictoryBar
+            barRatio={0.8}
             data={this.props.emotionData}
             x="emotion"
-            y="index" />
+            y="index"
+            style={{ data: { fill: "#c43a31", stroke: "black", strokeWidth: 1 }}}
+             />
             </VictoryChart>
         </div>
       </div>

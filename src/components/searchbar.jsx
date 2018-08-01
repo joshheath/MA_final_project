@@ -3,6 +3,8 @@ import NaturalLanguageCall from '../NaturalLanguageCall.js'
 import TwitCall from '../TwitCall.js'
 const nlc = new NaturalLanguageCall();
 const twitcall = new TwitCall()
+
+
 export default class SearchBar extends React.Component {
     myInput = React.createRef();
     getData = event => {
