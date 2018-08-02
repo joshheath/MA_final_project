@@ -28,7 +28,6 @@ class App extends Component {
 
   myCallback = (dataFromTable) => {
     this.componentDidMount(dataFromTable)
-    console.log(dataFromTable)
   }
 
   myInput = React.createRef()
@@ -45,7 +44,7 @@ class App extends Component {
         let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
         this.setState({emotionData: emotionData});
       });
-      twitcall.getTrends(1).then((trends) => {
+      twitcall.getTrends(23424977).then((trends) => {
         this.setState({data2: trends})
       })
     })

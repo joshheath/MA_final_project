@@ -14,7 +14,7 @@ function TwitCall(client = new Twitter({
 // Pass in geolocator number.
 TwitCall.prototype.getTrends = function(location) {
   return new Promise((resolve, reject) => {
-    this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}`, function(err, data, response) {
+    this._client.get(`https://api.twitter.com/1.1/trends/place.json?id=${location}&lang=en`, function(err, data, response) {
      if(!err) {
        // console.log(data[0].trends[0].name)
        var top10Trends = []
