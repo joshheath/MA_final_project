@@ -1,7 +1,7 @@
 # Makers Final Project - Twitter Sentiment Bot
 
 This is our final project at Makers. Our team of 4 (Nick, Matt, Chris and Josh) have made an app that uses tone and sentiment analysis software to return insights on tweets and hashtags returned by Twitter's API.  
-  
+
 This information is presented both via automated Language Reports tweeted out via a [twitter-bot](https://twitter.com/BotAnalysis), and in more depth via [Heroku](https://sentiment-analysis-twitter-bot.herokuapp.com/).  
 
 ## Getting started
@@ -36,11 +36,14 @@ This information is presented both via automated Language Reports tweeted out vi
 * __Heroku__
 * __Trello__ (kanban-style workflow manager)
 * __Balsamiq__ (design mock-up)
+* ![__React table__](https://react-table.js.org/#/story/readme) (for front end table design)
+* ![__Victory__](https://formidable.com/open-source/victory/) (for charts)
 
-## Development process and workflow 
+## Development process and workflow
 * __2 day sprints__ - at the start we discussed current progress, estimated the scope of new features (classing tasks as  small, medium or large), assessed blockages and assigned tasks amongst ourselves.
 * __Retros__ - at the end of each sprint to reflect on what had been achieved, what had gone well and what we could improve.
 * __Standups__ - a less formal chat at the start of the day where each person talks through work from the previous day, any issues and what they hope to achieve in the coming day.
+* We used __Trello__ as a tool to manage the flow of tickets we created: https://trello.com/b/eRZgCy4K/twitter-bot
 
 ## First retro
 
@@ -73,13 +76,17 @@ The second two day sprint focused on the following user stories:
 We made some significant progress in the second sprint:  
 - Set up React so we could begin developing our front end
 - Reformatted the repository folder structure to work with React, including merging package.json files
-- Passed a full suite of API JS and React component tests 
+- Passed a full suite of API JS and React component tests
 - Incorporated graphing functionality to represent data in the front end.
 
 ## Middle weekend work
-![Weekend work](/assets/weekend_work.JPG "weekend-work") 
+![Weekend work](/assets/weekend_work.JPG "weekend-work")
 Over the weekend we split up several tasks that could be done individually
 
 ![Third retro](/assets/retro3.jpg "retro 3")
 ![Third retro](/assets/retro3.1.jpg "retro 3")
-![Third retro](/assets/retro3.2.jpg "retro 3")
+![Third retro](/assets/retro3.1.2jpg "retro 3")
+
+## Second week work
+
+Based on the prioritisation above and using the designs as a means of prioritising user stories, we build the front end. We came across an interesting challenge that required us to pass Twitter API data server-side, rather than accessing the data from the browser.
