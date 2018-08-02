@@ -7,13 +7,13 @@ body {
 
 input {
   font-family: "Times New Roman", Times, serif;
-  height: 50px;
+  height: 25px;
   margin-right: 20px;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 h1 {
-  padding-top: 178px;
+  padding-top: 5%;
   color: #660033;
   max-height: 20px;
   white-space: nowrap;
@@ -26,8 +26,8 @@ h2 {
 
 button {
   font-family: "Times New Roman", Times, serif;
-  height: 50px;
-  font-size: 30px;
+  height: 30px;
+  font-size: 20px;
   color: white;
   background-color: blue;
   width: 200px;
@@ -37,7 +37,7 @@ button {
 }
 
 .Header {
-  height: 350px;
+  min-height: 300px;
   margin-top: 0;
   padding-top: 0;
   min-width: 90%;
@@ -52,56 +52,58 @@ button {
 
 .searchbar {
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.search-tweets {
-  padding: 20px;
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 25% 25% 25% 25% ;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin: 20px;
 }
 
 .Table {
-    width:50%;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    margin-right:2%;
-    margin-left: 2%;
-    float: left;
     background-color: white;
+    text-align: center;
 }
 
 .Graph {
-    width:38%;
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    float: left;
-    margin-left: 3%;
     background-color: white;
 }
 
 .Sentiment {
-  width:38%;
+  grid-column: 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
   border-style: solid;
   border-width: 1px;
   border-color: black;
-  float: left;
   background-color: white;
   text-align: center;
-  margin-left: 3%;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .Concepts {
-  width:38%;
+  grid-column: 1;
+  grid-row-start: 3;
+  grid-row-end: 4;
   border-style: solid;
   border-width: 1px;
   border-color: black;
-  float: left;
-  margin-right: 3%;
   background-color: white;
   text-align: center;
-  margin: 5px;
 }
