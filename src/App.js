@@ -73,20 +73,22 @@ class App extends Component {
             <button type="submit">Analyze</button>
         </form>
         </div>
-        <Table
-          data2={this.state.data2}
-          callbackFromApp={this.myCallback}
-        />
-        <Graph
-          emotionData={this.state.emotionData}
-        />
-        <div className="Sentiment">
-        <h3>Predominant Sentiment</h3>
-        <p>{this.state.sentimentData.toUpperCase()}</p>
+        <div className="grid">
+          <Table
+            data2={this.state.data2}
+            callbackFromApp={this.myCallback}
+          />
+          <Graph
+            emotionData={this.state.emotionData}
+          />
+          <div className="Sentiment">
+          <h3>Predominant Sentiment</h3>
+          <p>{this.state.sentimentData.toUpperCase()}</p>
+          </div>
+          <div className="Concepts">
+          <h3>Predominant Concepts</h3>
+          <p>{this.state.conceptData.join(', ')}</p>
         </div>
-        <div className="Concepts">
-        <h3>Predominant Concepts</h3>
-        <p>{this.state.conceptData.join(', ')}</p>
         </div>
       </div>
     )
