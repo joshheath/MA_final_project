@@ -1,7 +1,7 @@
 const TwitCall = require('../src/bot/TwitCall')
 
 var mockTwitter
-var promisedData = [{trends: [{name: '#wednesdaywisdom'},
+var promisedData = [{"trend": "#wednesdaywisdom", "volume": 1234},
   {name: '#wednesdaywisdom'},
   {name: '#wednesdaywisdom'},
   {name: '#wednesdaywisdom'},
@@ -11,7 +11,7 @@ var promisedData = [{trends: [{name: '#wednesdaywisdom'},
   {name: '#wednesdaywisdom'},
   {name: '#wednesdaywisdom'},
   {name: '#wednesdaywisdom'}
-]}]
+]
 var data
 var twitcall
 
@@ -36,17 +36,22 @@ describe('#getTrends', function () {
 
   it('returns tweets in an array', function (done) {
     twitcall.getTrends().then(function (pData) {
-      expect(pData[0]).toEqual({"trend": "#wednesdaywisdom", "volume": undefined})
+      expect(pData[0]).toEqual({"trend": "#wednesdaywisdom", "volume": 1234})
     })
     done()
   })
 
   describe('#getTweets', function () {
-    it('it calls the twitter API', function (done) {
+    it('processes data from returned promise', function (done) {
       twitcall.getTweets().then(function (pData) {
         expect(pData[0]).toEqual('#wednesdaywisdom')
       })
       done()
+    })
+
+    it('resolves as an array of tweets', async () => {
+      const trendhash = await twitcall.getTweets("dummy");
+      expect(trendhash).toHaveProperty('trend');
     })
 
     it('calls the Twitter API', function () {

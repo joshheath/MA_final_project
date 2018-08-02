@@ -11,7 +11,7 @@ describe('Reporter', function() {
 
       var reporter = new Reporter();
 
-      expect(reporter.compile(trend, toneanalysis, naturallanguage)).toEqual("LANGUAGE REPORT for #Ibiza:\nTone: positive,\nPredominant sentiment: positive\nEmotion ratings:\nsadness: 1,\njoy: 2,\nfear: 3,\ndisgust: 4,\nanger: 5\nMain concept(s): Holidays")
+      expect(reporter.compile(trend, toneanalysis, naturallanguage)).toEqual("LANGUAGE REPORT for #Ibiza:\nTone: positive,\nPredominant sentiment: positive\nEmotion ratings:\n sadness: 1,\n joy: 2,\n fear: 3,\n disgust: 4,\n anger: 5\nMain concept(s): Holidays")
 
     })
   })

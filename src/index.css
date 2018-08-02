@@ -1,5 +1,109 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  background-color:  #f2f2f2;
+  font-family: "Times New Roman", Times, serif;
+}
+
+input {
+  font-family: "Times New Roman", Times, serif;
+  height: 50px;
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+h1 {
+  padding-top: 178px;
+  color: #660033;
+  max-height: 20px;
+  white-space: nowrap;
+  display: block;
+}
+
+h2 {
+  text-align: center;
+}
+
+button {
+  font-family: "Times New Roman", Times, serif;
+  height: 50px;
+  font-size: 30px;
+  color: white;
+  background-color: blue;
+  width: 200px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.Header {
+  height: 350px;
+  margin-top: 0;
+  padding-top: 0;
+  min-width: 90%;
+  font-size: 45px;
+  background-image: url("conversation.png");
+  background-size: cover;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  font-family: 'Monoton', cursive;
+}
+
+.searchbar {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.search-tweets {
+  padding: 20px;
+}
+
+.Table {
+    width:50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    margin-right:2%;
+    margin-left: 2%;
+    float: left;
+    background-color: white;
+    text-align: center;
+
+}
+
+.Graph {
+    width:38%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    float: left;
+    margin-left: 3%;
+    background-color: white;
+}
+
+.Sentiment {
+  width:38%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  float: left;
+  background-color: white;
+  text-align: center;
+  margin-left: 3%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.Concepts {
+  width:38%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  float: left;
+  margin-right: 3%;
+  background-color: white;
+  text-align: center;
+  margin: 5px;
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "react-scripts start | node src/bot/bot.js",
+    "start": "react-scripts start | node src/bot/bot.js | twitter-proxy config.json",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
