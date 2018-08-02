@@ -17,6 +17,10 @@ const columns = [
 
 class Table extends Component {
 
+  renderGraph = (listInfo) => {
+      this.props.callbackFromApp(listInfo);
+    }
+
   render () {
   return (
     <div className="Table">
@@ -41,6 +45,7 @@ class Table extends Component {
       };
     }}
     /></div>
+
   )}
 }
 
