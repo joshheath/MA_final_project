@@ -82,10 +82,12 @@ class App extends Component {
           emotionData={this.state.emotionData}
         />
         <div className="Sentiment">
-        <p>{this.state.sentimentData}</p>
+        <h3>Predominant Sentiment</h3>
+        <p>{this.state.sentimentData.toUpperCase()}</p>
         </div>
         <div className="Concepts">
-        <p>{this.state.conceptData}</p>
+        <h3>Predominant Concepts</h3>
+        <p>{this.state.conceptData.join(', ')}</p>
         </div>
       </div>
     )
@@ -96,6 +98,9 @@ class Graph extends Component {
   render () {
     return (
       <div className="Graph">
+        <div>
+        <h2>Emotion Analysis</h2>
+        </div>
         <div>
         <VictoryChart height={400} width={400} domain={{y: [0, 1]}}
         domainPadding={20}

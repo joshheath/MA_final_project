@@ -87,8 +87,11 @@ button {
   border-width: 1px;
   border-color: black;
   float: left;
-  margin-left: 3%;
   background-color: white;
+  text-align: center;
+  margin-left: 3%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .Concepts {
@@ -97,6 +100,8 @@ button {
   border-width: 1px;
   border-color: black;
   float: left;
-  margin-left: 3%;
+  margin-right: 3%;
   background-color: white;
+  text-align: center;
+  margin: 5px;
 }
