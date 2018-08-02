@@ -21,8 +21,9 @@ class App extends Component {
     super(props)
     this.state = {
       emotionData: [],
+      sentimentData: "",
+      conceptData: [],
       data2: [],
-
     }
   }
 
@@ -42,8 +43,12 @@ class App extends Component {
     twitcall.getTweets(trend).then((tweets) => {
       nlc.analyzeLanguage(tweets.tweets.join(' ')).then((data) => {
         let apiData = data.emotions;
+        let sentimentData = data.sentiment;
+        let conceptData = data.concepts;
         let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
         this.setState({emotionData: emotionData});
+        this.setState({sentimentData: sentimentData});
+        this.setState({conceptData: conceptData});
       });
       twitcall.getTrends(1).then((trends) => {
         this.setState({data2: trends})
@@ -76,6 +81,12 @@ class App extends Component {
         <Graph
           emotionData={this.state.emotionData}
         />
+        <div className="Sentiment">
+        <p>{this.state.sentimentData}</p>
+        </div>
+        <div className="Concepts">
+        <p>{this.state.conceptData}</p>
+        </div>
       </div>
     )
   }
