@@ -22,7 +22,6 @@ class App extends Component {
     this.state = {
       emotionData: [],
       data2: [],
-
     }
   }
 
@@ -44,7 +43,7 @@ class App extends Component {
         let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
         this.setState({emotionData: emotionData});
       });
-      twitcall.getTrends(23424977).then((trends) => {
+      twitcall.getTrends(1).then((trends) => {
         this.setState({data2: trends})
       })
     })

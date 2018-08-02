@@ -19,7 +19,6 @@ ToneAnalyzerCall.prototype.analyzeSentiment = function (text) {
 
     this._toneAnalyzer.tone(toneParams, function (error, analysis) {
       if (error) {
-        console.log(error);
         reject(error);
       } else {
         const tones = {tones: []}
