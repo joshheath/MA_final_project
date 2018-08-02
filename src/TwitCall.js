@@ -62,12 +62,9 @@ TwitCall.prototype.updateStatus = function (status) {
   return new Promise((resolve, reject) => {
     this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
       if(error) reject(error);
-      // console.log(tweet);
-      resolve(tweet)  // Tweet body.
-      // console.log(response);  // Raw response object.
-
+      resolve(tweet)
     });
   });
 };
 
-export default TwitCall;
+module.exports = TwitCall;

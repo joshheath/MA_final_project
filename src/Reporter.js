@@ -12,4 +12,4 @@ var naturallanguage = {sentiment: 'neutral', emotions: {sadness: 1, joy: 2, fear
 
 reporter.compile(trend, toneanalysis, naturallanguage);
 
-export default Reporter;
+module.exports = Reporter;
