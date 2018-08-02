@@ -23,8 +23,6 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
 
   this._analyzer.analyze(parameters, function(error, response) {
       if (error) {
-        console.log(error);
-        reject(error);
       } else {
         const sentiment = response.sentiment.document.label;
         var emotions = {}
@@ -42,8 +40,5 @@ NaturalLanguageCall.prototype.analyzeLanguage = function (tweets) {
     })
   });
 };
-//
-// nlc = new NaturalLanguageCall()
-// nlc.analyzeLanguage("NationalAvocadoDay")
 
 module.exports = NaturalLanguageCall;

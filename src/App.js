@@ -49,7 +49,7 @@ class App extends Component {
         this.setState({sentimentData: sentimentData});
         this.setState({conceptData: conceptData});
       });
-      twitcall.getTrends(23424977).then((trends) => {
+      twitcall.getTrends(1).then((trends) => {
         this.setState({data2: trends})
       })
     })
