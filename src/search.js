@@ -6,9 +6,9 @@ const TwitCall = require('./TwitCall')
 const ToneAnalyzerCall = require('./ToneAnalyzerCall')
 const NaturalLanguageCall = require('./NaturalLanguageCall')
 
-const twitcall = new TwitCall();
-const tony = new ToneAnalyzerCall();
-const natural = new NaturalLanguageCall();
+const twitcall = new TwitCall()
+const tony = new ToneAnalyzerCall()
+const natural = new NaturalLanguageCall()
 
 async function asyncCall(trend) {
   const tweets = await twitcall.getTweets(trend);
