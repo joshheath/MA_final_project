@@ -80,3 +80,28 @@ button {
     margin-left: 3%;
     background-color: white;
 }
+
+.Sentiment {
+  width:38%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  float: left;
+  background-color: white;
+  text-align: center;
+  margin-left: 3%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.Concepts {
+  width:38%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  float: left;
+  margin-right: 3%;
+  background-color: white;
+  text-align: center;
+  margin: 5px;
+}

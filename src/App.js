@@ -21,8 +21,9 @@ class App extends Component {
     super(props)
     this.state = {
       emotionData: [],
+      sentimentData: "",
+      conceptData: [],
       data2: [],
-
     }
   }
 
@@ -41,8 +42,12 @@ class App extends Component {
     twitcall.getTweets(trend).then((tweets) => {
       nlc.analyzeLanguage(tweets.tweets.join(' ')).then((data) => {
         let apiData = data.emotions;
+        let sentimentData = data.sentiment;
+        let conceptData = data.concepts;
         let emotionData = [{emotion: 1, index: apiData.sadness}, {emotion: 2, index: apiData.fear}, {emotion: 3, index: apiData.anger}, {emotion: 4, index: apiData.disgust}, {emotion: 5, index: apiData.joy}]
         this.setState({emotionData: emotionData});
+        this.setState({sentimentData: sentimentData});
+        this.setState({conceptData: conceptData});
       });
       twitcall.getTrends(23424977).then((trends) => {
         this.setState({data2: trends})
@@ -75,6 +80,14 @@ class App extends Component {
         <Graph
           emotionData={this.state.emotionData}
         />
+        <div className="Sentiment">
+        <h3>Predominant Sentiment</h3>
+        <p>{this.state.sentimentData.toUpperCase()}</p>
+        </div>
+        <div className="Concepts">
+        <h3>Predominant Concepts</h3>
+        <p>{this.state.conceptData.join(', ')}</p>
+        </div>
       </div>
     )
   }
@@ -84,6 +97,9 @@ class Graph extends Component {
   render () {
     return (
       <div className="Graph">
+        <div>
+        <h2>Emotion Analysis</h2>
+        </div>
         <div>
         <VictoryChart height={400} width={400} domain={{y: [0, 1]}}
         domainPadding={20}
