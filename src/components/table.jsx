@@ -11,15 +11,13 @@ const nlc = new NaturalLanguageCall();
 const columns = [
   {Header: 'Trend', accessor: 'trend'},
   {Header: 'Volume', accessor: 'volume', Cell: props => <span className='number'>{props.value}</span>},
-  {Header: 'Sentiment', accessor: 'sentiment'},
-  {Header: 'Concepts', accessor: 'concepts'}
 ]
 
 class Table extends Component {
 
   renderGraph = (listInfo) => {
       this.props.callbackFromApp(listInfo);
-    }
+  }
 
   render () {
   return (
@@ -37,7 +35,7 @@ class Table extends Component {
        return {
         onClick: (e, handleOriginal) => {
           const nameOfTrend = rowInfo.original.trend
-          this.myInput
+          this.renderGraph(nameOfTrend)
           if (handleOriginal) {
             handleOriginal();
           }
@@ -45,7 +43,6 @@ class Table extends Component {
       };
     }}
     /></div>
-
   )}
 }
 
