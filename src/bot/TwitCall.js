@@ -21,7 +21,6 @@ TwitCall.prototype.getTrends = function(location) {
        for(let i = 0; i < 10; i++) {
          top10Trends.push(data[0].trends[i].name)
        }
-       console.log(top10Trends)
        resolve(top10Trends);
      } else {
        console.log(err);
@@ -54,7 +53,6 @@ TwitCall.prototype.getTweets = function(trend) {
         console.log(err)
         reject(err)
       }
-      console.log(trendHash)
       resolve(trendHash);
     })
   })
@@ -65,7 +63,7 @@ TwitCall.prototype.updateStatus = function (status) {
   return new Promise((resolve, reject) => {
     this._client.post('statuses/update', {status: `${status}`},  function(error, tweet, response) {
       if(error) reject(error);
-      resolve(tweet)  // Tweet body.
+      resolve(tweet)
     });
   });
 };

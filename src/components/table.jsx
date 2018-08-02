@@ -4,6 +4,7 @@ import 'react-table/react-table.css'
 import TwitCall from '../TwitCall.js'
 import NaturalLanguageCall from '../NaturalLanguageCall.js'
 
+
 const twitcall = new TwitCall()
 const nlc = new NaturalLanguageCall();
 
@@ -21,27 +22,30 @@ class Table extends Component {
     }
 
   render () {
-    return (
-      <ReactTable
-       data={this.props.data2}
-       columns={columns}
-       showPagination={false}
-       defaultPageSize={10}
-       sortable={true}
-       width={35}
+  return (
+    <div className="Table">
+    <h2>Top 10 Twitter Trends</h2>
+    <ReactTable
+     data={this.props.data2}
+     columns={columns}
+     showPagination={false}
+     defaultPageSize={10}
+     sortable={true}
+     width={35}
 
-       getTdProps={(state, rowInfo, column, instance) => {
-         return {
-          onClick: (e, handleOriginal) => {
-            const nameOfTrend = rowInfo.original.trend
-            this.renderGraph(nameOfTrend)
-            if (handleOriginal) {
-              handleOriginal();
-            }
+     getTdProps={(state, rowInfo, column, instance) => {
+       return {
+        onClick: (e, handleOriginal) => {
+          const nameOfTrend = rowInfo.original.trend
+          this.myInput
+          if (handleOriginal) {
+            handleOriginal();
           }
-        };
-      }}
-    />
+        }
+      };
+    }}
+    /></div>
+
   )}
 }
 
