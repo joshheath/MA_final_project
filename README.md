@@ -89,9 +89,10 @@ Over the weekend we split up several tasks that could be done individually
 
 In our third retro we set out some ideas for how the front end would look:
 
+![Third retro](/assets/retro3.1.2.jpg "retro 3")
 ![Third retro](/assets/retro3.jpg "retro 3")
 ![Third retro](/assets/retro3.1.jpg "retro 3")
-![Third retro](/assets/retro3.1.2.jpg "retro 3")
+
 
 Based on the prioritisation above and using the designs as a means of prioritising user stories, we build the front end. We came across an interesting challenge that required us to pass Twitter API data server-side, rather than accessing the data from the browser.
 
