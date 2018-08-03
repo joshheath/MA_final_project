@@ -85,10 +85,11 @@ Over the weekend we split up several tasks that could be done individually
 
 ![Third retro](/assets/retro3.jpg "retro 3")
 ![Third retro](/assets/retro3.1.jpg "retro 3")
-![Third retro](/assets/retro3.1.2.jpg "retro 3")
+![Third retro](/assets/retro3.1.2jpg "retro 3")
 
 ## Second week work
 
 Based on the prioritisation above and using the designs as a means of prioritising user stories, we build the front end. We came across an interesting challenge that required us to pass Twitter API data server-side, rather than accessing the data from the browser.
 
 For the time being, in order to run the app in browser, it's necessary to download a chrome plugin, which enabled Cross Original Resource Sharing (CORS). [Download the Chrome plugin](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi). Switching this on will allow you to enter a phrase in the search box.
+
