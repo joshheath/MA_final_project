@@ -36,8 +36,8 @@ This information is presented both via automated Language Reports tweeted out vi
 * __Heroku__
 * __Trello__ (kanban-style workflow manager)
 * __Balsamiq__ (design mock-up)
-* ![__React table__](https://react-table.js.org/#/story/readme) (for front end table design)
-* ![__Victory__](https://formidable.com/open-source/victory/) (for charts)
+* __React table__ (for front end table design)
+* __Victory__ (for charts)
 
 ## Development process and workflow
 * __2 day sprints__ - at the start we discussed current progress, estimated the scope of new features (classing tasks as  small, medium or large), assessed blockages and assigned tasks amongst ourselves.
